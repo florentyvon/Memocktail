@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TPMemory</string>
+    <string name="descriptionlobby">Pour apprendre à faire des cocktails savoureux!</string>
+    <string name="welcomelobby">Bienvenue dans le monde de Mocktail</string>
+    <string name="mode_classique">Mode classique</string>
+    <string name="mode_chrono">Mode chrono</string>
+    <string name="historique">Historique</string>
+    <string name="descriptionducocktail">cocktaildescription</string>
 </resources>
