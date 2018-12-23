@@ -35,15 +35,15 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
         switch (v.getId())
         {
             case R.id.button_classique:
-                intent = new Intent(getApplicationContext(), LobbyActivity.class);
+                intent = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button_chrono:
-                intent = new Intent(getApplicationContext(), LobbyActivity.class);
+                intent = new Intent(getApplicationContext(), ATCActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button_histo:
-                intent = new Intent(getApplicationContext(), LobbyActivity.class);
+                intent = new Intent(getApplicationContext(), HistoricActivty.class);
                 startActivity(intent);
                 break;
         }

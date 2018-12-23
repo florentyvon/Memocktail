@@ -35,7 +35,6 @@ public class CardFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         _cocktailImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +45,7 @@ public class CardFragment extends Fragment {
 
     public void setImageVisibility(boolean b)
     {
+        _cocktailImage = (ImageView) _currentView.findViewById(R.id.cocktailImageView);
         if(b) _cocktailImage.setImageResource(_id);
         else _cocktailImage.setImageResource(R.drawable.ic_launcher_background);
     }
@@ -59,5 +59,7 @@ public class CardFragment extends Fragment {
     private void initComponents()
     {
         _cocktailImage = (ImageView) _currentView.findViewById(R.id.cocktailImageView);
+        setImageVisibility(true);
+
     }
 }
