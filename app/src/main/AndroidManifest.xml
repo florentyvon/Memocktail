@@ -19,8 +19,9 @@
         </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".HistoricActivty" />
-        <activity android:name=".ATCActivity"></activity>
+        <activity android:name=".ATCActivity"/>
+        <activity android:name=".HistoricActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,4 +6,15 @@
     <string name="mode_chrono">Mode chrono</string>
     <string name="historique">Historique</string>
     <string name="descriptionducocktail">cocktaildescription</string>
+    <string name="virgin_daiquiri">Virgin daiquiri</string>
+    <string name="virgin_mojito">Virgin mojito</string>
+    <string name="virgin_pina_colada">Virgin pina colada</string>
+    <string name="difficulty">Difficulté</string>
+    <string name="gameMode">Mode de Jeu</string>
+    <string name="easy">Facile</string>
+    <string name="hard">Difficile</string>
+    <string name="classic">Classique</string>
+    <string name="atc">Contre La Montre</string>
+    <string name="played_games">Parties Jouées</string>
+    <string name="victories">Victoires</string>
 </resources>

@@ -43,7 +43,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.button_histo:
-                intent = new Intent(getApplicationContext(), HistoricActivty.class);
+                intent = new Intent(getApplicationContext(), HistoricActivity.class);
                 startActivity(intent);
                 break;
         }
