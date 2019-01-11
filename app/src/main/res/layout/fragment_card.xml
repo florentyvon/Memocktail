@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageView
         android:id="@+id/cocktailImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
         android:contentDescription="@string/descriptionducocktail"
         android:src="@drawable/img_virgin_daiquiri" />
 </LinearLayout>

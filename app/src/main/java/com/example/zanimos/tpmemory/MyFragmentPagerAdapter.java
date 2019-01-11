@@ -54,7 +54,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position){
-            // TODO : chaines à stocker dans strings.xml
             case 0: return context.getString(R.string.virgin_daiquiri);
             case 1: return context.getString(R.string.virgin_mojito);
             case 2: return context.getString(R.string.virgin_pina_colada);

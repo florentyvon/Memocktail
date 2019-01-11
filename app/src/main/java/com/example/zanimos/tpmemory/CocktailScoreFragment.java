@@ -46,7 +46,6 @@ public class CocktailScoreFragment extends Fragment {
         setScore();
     }
 
-    // TODO : method for component init (dropwnlist = findViewById(..) .. )
     private void initComponents()
     {
         difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};

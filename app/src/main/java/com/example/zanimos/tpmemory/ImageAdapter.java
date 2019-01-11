@@ -1,60 +1,49 @@
 package com.example.zanimos.tpmemory;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.zanimos.tpmemory.R;
+import java.util.ArrayList;
 
-public class ImageAdapter extends BaseAdapter {
-
+public class ImageAdapter extends ArrayAdapter {
     private Context context;
+    private int layoutResourceId;
+    private ArrayList data = new ArrayList();
 
-    public ImageAdapter(Context context) {
+    public ImageAdapter(Context context, int layoutResourceId, ArrayList<CardFragment> data) {
+        super(context, layoutResourceId, data);
+        this.layoutResourceId = layoutResourceId;
         this.context = context;
+        this.data = data;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View row = convertView;
+        ViewHolder holder = null;
 
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View gridView;
-
-        if (convertView == null) {
-
-            gridView = new View(context);
-
-            // get layout from mobile.xml
-            gridView = inflater.inflate(R.layout.fragment_card, null);
-
-            // set image based on selected text
-            ImageView imageView = (ImageView) gridView
-                    .findViewById(R.id.cocktailImageView);
-            imageView.setImageResource(R.drawable.img_virgin_mojito);
+        if (row == null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            row = inflater.inflate(layoutResourceId, parent, false);
+            holder = new ViewHolder();
+            holder.image = (ImageView) row.findViewById(R.id.image);
+            row.setTag(holder);
         } else {
-            gridView = (View) convertView;
+            holder = (ViewHolder) row.getTag();
         }
 
-        return gridView;
+        CardFragment item = (CardFragment) data.get(position);
+        //holder.image.setImageBitmap(item.getImage());
+        return row;
     }
 
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
+    static class ViewHolder {
+        ImageView image;
     }
 }
