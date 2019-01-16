@@ -4,48 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cocktail"
-    tools:context=".MenuActivity">
+    android:background="@drawable/bckgnd"
+    tools:context=".MenuActivity"
+    tools:layout_editor_absoluteY="81dp">
 
 
     <Button
         android:id="@+id/button_classique"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="73dp"
         android:layout_marginTop="84dp"
-        android:background="@android:color/holo_orange_dark"
+        android:layout_marginBottom="84dp"
+        android:background="@android:color/holo_red_light"
         android:text="@string/mode_classique"
-        app:layout_constraintBottom_toTopOf="@+id/button_chrono"
+        app:layout_constraintBottom_toTopOf="@+id/button_histo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintTop_toBottomOf="@+id/button_chrono" />
 
     <Button
         android:id="@+id/button_chrono"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/holo_green_dark"
         android:text="@string/mode_chrono"
-        app:layout_constraintBottom_toTopOf="@+id/button_histo"
+        app:layout_constraintBottom_toTopOf="@+id/button_classique"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/button_histo"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/holo_blue_dark"
         android:text="@string/historique"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_classique"
+        app:layout_constraintVertical_bias="0.507" />
 
 
 </android.support.constraint.ConstraintLayout>
