@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/cardsGridView"
+    <GridLayout
+        android:id="@+id/cardsGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="3"

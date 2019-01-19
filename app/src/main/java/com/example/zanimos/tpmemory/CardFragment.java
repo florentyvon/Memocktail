@@ -10,14 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class CardFragment extends Fragment {
 
-    private View _currentView = null;
     private int _id = R.drawable.img_virgin_daiquiri;
-
-    private ImageView _cocktailImage = null;
+    private ImageView _cocktailImage;
+    private View _currentView;
 
     @Override
     public void setArguments(Bundle args) {
@@ -43,23 +43,24 @@ public class CardFragment extends Fragment {
         });
     }
 
-    public void setImageVisibility(boolean b)
-    {
-        _cocktailImage = (ImageView) _currentView.findViewById(R.id.cocktailImageView);
-        if(b) _cocktailImage.setImageResource(_id);
+    public void setImageVisibility(boolean b) {
+        if (b) _cocktailImage.setImageResource(_id);
         else _cocktailImage.setImageResource(R.drawable.ic_launcher_background);
     }
 
-    private CardFragment sendCardSelected()
-    {
+    public CardFragment sendCardSelected() {
         // TODO send to GameActivity
         return this;
     }
 
-    private void initComponents()
-    {
-        _cocktailImage = (ImageView) _currentView.findViewById(R.id.cocktailImageView);
+    private void initComponents() {
+        _cocktailImage = _currentView.findViewById(R.id.cocktailImageView);
         setImageVisibility(true);
+    }
 
+    @Nullable
+    @Override
+    public View getView() {
+        return  _cocktailImage;
     }
 }

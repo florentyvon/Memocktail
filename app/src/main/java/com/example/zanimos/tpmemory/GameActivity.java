@@ -4,9 +4,12 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -14,32 +17,21 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
-    private ArrayList<CardFragment> _cards=null;
-    private CardFragment _cardSelected = null;
-    private GridView _cardsGridView = null;
-    private ImageAdapter gridAdapter;
+    private ArrayList<CardFragment> _cards;
+    private CardFragment _cardSelected;
+    private GridLayout _cardsGrid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        initComponents();
+        //TODO: set row and coll dynamically
+        initComponents(4,3);
         //tuto : https://stacktips.com/tutorials/android/android-gridview-example-building-image-gallery-in-android sauf image item
         initCardList(R.drawable.img_virgin_daiquiri);
-        gridAdapter = new ImageAdapter(this, R.layout.fragment_card, _cards);
-        _cardsGridView.setAdapter(gridAdapter);
 
-        _cardsGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        Integer.toString(position), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
+       }
 
     public void compareCardSelected(CardFragment selectedCocktail)
     {
@@ -68,13 +60,18 @@ public class GameActivity extends AppCompatActivity {
         //Pop up dialog
     }
 
-    private void initComponents()
+    private void initComponents(int row, int col)
+
     {
-        _cardsGridView = (GridView) findViewById(R.id.cardsGridView);
+        _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
+        //_cardsGrid.setColumnCount(col);
+        //_cardsGrid.setRowCount(row);
     }
 
     private void initCardList(int cocktailId)
     {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+
         _cards = new ArrayList<CardFragment>();
         switch(cocktailId)
         {
@@ -83,7 +80,10 @@ public class GameActivity extends AppCompatActivity {
                 for(int i=0; i<12; i++){
                     CardFragment cf = new CardFragment();
                     _cards.add(cf);
-            }
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add( _cardsGrid.getId(),cf,null).commit();
+                   // _cardsGrid.addView(cf.getView(),i);
+                }
                 break;
             case R.drawable.img_virgin_mojito :
                 //load virgin mojito image
@@ -94,5 +94,6 @@ public class GameActivity extends AppCompatActivity {
             default:
                 break;
         }
+
     }
 }
