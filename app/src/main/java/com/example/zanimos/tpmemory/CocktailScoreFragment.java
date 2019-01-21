@@ -1,6 +1,8 @@
 package com.example.zanimos.tpmemory;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class CocktailScoreFragment extends Fragment {
 
@@ -19,6 +22,8 @@ public class CocktailScoreFragment extends Fragment {
     private View _currentView;
     private Spinner spinnerD, spinnerGM;
     private String[] difficulties, modes;
+    private TextView _textViewScorePlayedGames;
+    private TextView _textViewScoreVictories;
 
     @Override
     public void setArguments(Bundle args) {
@@ -44,6 +49,13 @@ public class CocktailScoreFragment extends Fragment {
         spinnerGM.setAdapter(adapterGM);
         bindEvents();
         setScore();
+
+        SharedPreferences prefs = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        _textViewScoreVictories.setText(
+                String.valueOf(prefs.getInt(
+                        "victory-virgin_daiquiri-classique-normal", 0)
+                ));
     }
 
     private void initComponents()
@@ -52,6 +64,8 @@ public class CocktailScoreFragment extends Fragment {
         spinnerD = (Spinner) _currentView.findViewById(R.id.spinnerDifficulty);
         modes = new String[] {getString(R.string.classic), getString(R.string.atc)};
         spinnerGM = (Spinner) _currentView.findViewById(R.id.spinnerGameMode);
+        _textViewScorePlayedGames = _currentView.findViewById(R.id.textViewScorePlayedGames);
+        _textViewScoreVictories = _currentView.findViewById(R.id.textViewScoreVictories);
     }
 
     // TODO : method for attaching event like onclick

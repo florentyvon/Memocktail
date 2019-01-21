@@ -10,5 +10,5 @@
         android:layout_width="75dp"
         android:layout_height="150dp"
         android:contentDescription="@string/descriptionducocktail"
-        android:src="@drawable/img_virgin_daiquiri" />
+        android:src="@drawable/dos_carte" />
 </LinearLayout>
