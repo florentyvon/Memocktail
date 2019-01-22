@@ -171,7 +171,7 @@ public class GameActivity extends AppCompatActivity {
     private void finishGame(boolean win)
     {
         Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
 
         int score;
@@ -180,7 +180,6 @@ public class GameActivity extends AppCompatActivity {
             score = prefs.getInt(_preferencesVictoryKey, 0);
             ++score;
             editor.putInt(_preferencesVictoryKey, score);
-            // TODO : difference with editor.commit() ?
             editor.apply();
         }
     }

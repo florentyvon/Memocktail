@@ -19,6 +19,7 @@ public class LobbyActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
     private Toolbar mTopToolbar;
+    private SharedPreferencesManager _preferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
