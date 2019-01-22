@@ -107,6 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="#0000"
         app:srcCompat="@drawable/play_game_button" />
 
 </android.support.constraint.ConstraintLayout>

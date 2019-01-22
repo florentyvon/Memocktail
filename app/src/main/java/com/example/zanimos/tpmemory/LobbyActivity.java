@@ -32,6 +32,10 @@ public class LobbyActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        // Init SharedPreferencesManager for all app
+        SharedPreferencesManager.Instance(getApplicationContext());
+
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

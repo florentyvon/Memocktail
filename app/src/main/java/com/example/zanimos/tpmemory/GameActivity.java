@@ -2,6 +2,7 @@ package com.example.zanimos.tpmemory;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -26,11 +27,14 @@ import java.util.Collections;
 
 public class GameActivity extends AppCompatActivity {
 
+    private SharedPreferencesManager _preferencesManager;
     private CardFragment[] _cardsSelected;
     private GridLayout _cardsGrid;
+
     private int _nbPairToPlay;
-    private String _preferencesVictoryKey;
-    private String _preferencesGamePlayedKey;
+    private String _difficulty;
+    private String _cocktail;
+    private String _gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +44,14 @@ public class GameActivity extends AppCompatActivity {
 
         Bundle bd = getIntent().getExtras();
         if(bd!=null){
-            String bdDifficulty = bd.getString("DIFFICULTY");
-            String bdCocktail = bd.getString("COCKTAIL");
-            String bdGameMode = bd.getString("GAME_MODE");
+            _difficulty = bd.getString("DIFFICULTY");
+            _cocktail = bd.getString("COCKTAIL");
+            _gameMode = bd.getString("GAME_MODE");
 
-            setPreferencesToken(bdDifficulty, bdCocktail, bdGameMode);
-            setDifficulty(bdDifficulty);
-            setCocktail(bdCocktail);
-            setGameMode(bdGameMode);
+            //setPreferencesToken(bdDifficulty, bdCocktail, bdGameMode);
+            setDifficulty(_difficulty);
+            setCocktail(_cocktail);
+            setGameMode(_gameMode);
         }
     }
 
@@ -55,7 +59,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         _cardsSelected = new CardFragment[2];
-        storeGameStart();
+
+        // Get SharedPreferencesManager Instance
+        _preferencesManager = SharedPreferencesManager.Instance(getApplicationContext());
+        _preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
     }
 
     private void setDifficulty(String difficulty)
@@ -109,7 +116,7 @@ public class GameActivity extends AppCompatActivity {
             // TODO : lancer service chrono
         }
     }
-
+/*
     private void setPreferencesToken(String bdDifficulty, String bdCocktail, String bdGameMode)
     {
         // token pattern : victory/played-cocktail-gamemode-difficulty
@@ -132,7 +139,7 @@ public class GameActivity extends AppCompatActivity {
         editor.putInt(_preferencesGamePlayedKey, gamePlayed);
         editor.apply();
     }
-
+*/
     public void compareCardSelected(CardFragment clickedCard)
     {
         if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
@@ -171,17 +178,15 @@ public class GameActivity extends AppCompatActivity {
     private void finishGame(boolean win)
     {
         Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = prefs.edit();
-
-        int score;
         if(win)
         {
-            score = prefs.getInt(_preferencesVictoryKey, 0);
-            ++score;
-            editor.putInt(_preferencesVictoryKey, score);
-            editor.apply();
+            _preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
         }
+
+        // Back to Menu
+        Intent i = new Intent(this.getApplicationContext(), MenuActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void initComponents()

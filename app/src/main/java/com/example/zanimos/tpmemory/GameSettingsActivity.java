@@ -62,20 +62,27 @@ public class GameSettingsActivity extends AppCompatActivity {
                 String cocktailSelected = (String) _spinnerCocktails.getSelectedItem();
                 String gameModeSelected = (String) _spinnerGameMode.getSelectedItem();
                 String difficultySelected = (String) _spinnerDifficulty.getSelectedItem();
-                if(cocktailSelected != null && gameModeSelected != null && difficultySelected != null){
-                    // Set parameters to game
-                    Bundle bd = new Bundle();
-                    bd.putString("COCKTAIL", cocktailSelected);
-                    bd.putString("GAME_MODE", gameModeSelected);
-                    bd.putString("DIFFICULTY", difficultySelected);
 
-                    // Start Game Activity with parameters
-                    Intent i = new Intent(getApplicationContext(), GameActivity.class);
-                    i.putExtras(bd);
-                    startActivity(i);
-                }
+                // Set parameters to game
+                Bundle bd = new Bundle();
+                bd.putString("COCKTAIL", cocktailSelected);
+                bd.putString("GAME_MODE", gameModeSelected);
+                bd.putString("DIFFICULTY", difficultySelected);
+
+                // Start Game Activity with parameters
+                Intent i = new Intent(getApplicationContext(), GameActivity.class);
+                i.putExtras(bd);
+                startActivity(i);
             }
         });
+    }
+
+    private void initComponents(){
+        _spinnerCocktails = findViewById(R.id.spinnerCocktailToPlay);
+        _spinnerDifficulty = findViewById(R.id.spinnerDifficultyToPlay);
+        _spinnerGameMode = findViewById(R.id.spinnerGameModeToPlay);
+        _cocktailImage = findViewById(R.id.imageViewCocktailToPlay);
+        _playButton = findViewById(R.id.playButton);
     }
 
     private void setSpinners(){
@@ -97,13 +104,5 @@ public class GameSettingsActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, modes);
         adapterGameMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerGameMode.setAdapter(adapterGameMode);
-    }
-
-    private void initComponents(){
-        _spinnerCocktails = findViewById(R.id.spinnerCocktailToPlay);
-        _spinnerDifficulty = findViewById(R.id.spinnerDifficultyToPlay);
-        _spinnerGameMode = findViewById(R.id.spinnerGameModeToPlay);
-        _cocktailImage = findViewById(R.id.imageViewCocktailToPlay);
-        _playButton = findViewById(R.id.playButton);
     }
 }

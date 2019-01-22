@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,15 +18,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CocktailScoreFragment extends Fragment {
+public class CocktailScoreFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
     private final String _fragmentResulatTag = "android:switcher:"+R.id.viewerpager+":0";
     private int _idCocktail = 0;
     private View _currentView;
-    private Spinner spinnerD, spinnerGM;
-    private String[] difficulties, modes;
+    private Spinner _spinnerDifficulty, _spinnerGameMode;
     private TextView _textViewScorePlayedGames;
     private TextView _textViewScoreVictories;
+    private SharedPreferencesManager _preferencesManager;
 
     @Override
     public void setArguments(Bundle args) {
@@ -43,63 +44,107 @@ public class CocktailScoreFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ArrayAdapter<String> adapterD = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, difficulties);
-        adapterD.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerD.setAdapter(adapterD);
-        ArrayAdapter<String> adapterGM = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, modes);
-        adapterGM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGM.setAdapter(adapterGM);
+
+        // Get SharedPreferencesManager Instance
+        _preferencesManager = SharedPreferencesManager.Instance(
+                this.getActivity().getApplicationContext());
         bindEvents();
+        setSpinners();
         setScore();
+    }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity().getApplicationContext());
+    private void bindEvents(){
+        _spinnerDifficulty.setOnItemSelectedListener(this);
+        _spinnerGameMode.setOnItemSelectedListener(this);
+    }
 
-        /*Toast.makeText(getContext(), prefs.getInt(
-                "victory-virgin_daiquiri-classique-facile", 0), Toast.LENGTH_SHORT).show();*/
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        setScore();
+    }
 
-        _textViewScoreVictories.setText(
-                String.valueOf(prefs.getInt(
-                        "victory-virgin_daiquiri-classique-facile", 0)
-                ));
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     private void initComponents()
     {
-        difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};
-        spinnerD = (Spinner) _currentView.findViewById(R.id.spinnerDifficulty);
-        modes = new String[] {getString(R.string.classic), getString(R.string.atc)};
-        spinnerGM = (Spinner) _currentView.findViewById(R.id.spinnerGameMode);
+        _spinnerDifficulty = (Spinner) _currentView.findViewById(R.id.spinnerDifficulty);
+        _spinnerGameMode = (Spinner) _currentView.findViewById(R.id.spinnerGameMode);
         _textViewScorePlayedGames = _currentView.findViewById(R.id.textViewScorePlayedGames);
         _textViewScoreVictories = _currentView.findViewById(R.id.textViewScoreVictories);
     }
 
-    // TODO : method for attaching event like onclick
-    private void bindEvents()
+    private void setSpinners()
     {
+        String[] difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};
+        String[] modes = new String[] {getString(R.string.classic), getString(R.string.atc)};
 
+        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<String>(this.getActivity().getApplicationContext(),
+                android.R.layout.simple_spinner_item, difficulties);
+        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        _spinnerDifficulty.setAdapter(adapterDifficulty);
+
+        ArrayAdapter<String> adapterGameMode = new ArrayAdapter<String>(this.getActivity().getApplicationContext(),
+                android.R.layout.simple_spinner_item, modes);
+        adapterGameMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        _spinnerGameMode.setAdapter(adapterGameMode);
     }
 
-    // TODO : load scores from own page depending on the id
     private void setScore()
     {
         ImageView image = _currentView.findViewById(R.id.imageViewCocktail);
+        String tempNbPlayed;
+        String tempScore;
         switch(_idCocktail)
         {
             case R.drawable.img_virgin_daiquiri :
-                // TODO : load virgin daiquiri score
                 image.setImageResource(R.drawable.img_virgin_daiquiri);
+
+                tempNbPlayed = _preferencesManager.readTokenValue("played",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_daiquiri",
+                        _spinnerGameMode.getSelectedItem().toString());
+                tempScore = _preferencesManager.readTokenValue("victory",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_daiquiri",
+                        _spinnerGameMode.getSelectedItem().toString());
                 break;
+
             case R.drawable.img_virgin_mojito :
-                // TODO : load virgin mojito score
                 image.setImageResource(R.drawable.img_virgin_mojito);
+
+                tempNbPlayed = _preferencesManager.readTokenValue("played",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_mojito",
+                        _spinnerGameMode.getSelectedItem().toString());
+                tempScore = _preferencesManager.readTokenValue("victory",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_mojito",
+                        _spinnerGameMode.getSelectedItem().toString());
                 break;
+
             case R.drawable.img_virgin_pina_colada :
-                // TODO : load virgin pina colada score
                 image.setImageResource(R.drawable.img_virgin_pina_colada);
+
+                tempNbPlayed = _preferencesManager.readTokenValue("played",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_pina_colada",
+                        _spinnerGameMode.getSelectedItem().toString());
+                tempScore = _preferencesManager.readTokenValue("victory",
+                        _spinnerDifficulty.getSelectedItem().toString(),
+                        "virgin_pina_colada",
+                        _spinnerGameMode.getSelectedItem().toString());
                 break;
+
             default:
-                // TODO : load nothing => popup dialog error ?
+                tempNbPlayed = "";
+                tempScore = "";
                 break;
         }
+
+        _textViewScorePlayedGames.setText(tempNbPlayed);
+        _textViewScoreVictories.setText(tempScore);
     }
 }
