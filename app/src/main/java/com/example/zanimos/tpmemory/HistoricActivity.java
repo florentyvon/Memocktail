@@ -16,7 +16,7 @@ public class HistoricActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Mocktail - Historique");
+        setTitle("Mémocktail - Historique");
         setContentView(R.layout.activity_historic);
         initComponents();
     }

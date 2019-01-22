@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridLayout;
@@ -34,15 +35,14 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        setTitle("Mémocktail");
         initComponents(4,3);
         _nbPairToPlay = 6;
         _cardsSelected = new CardFragment[2];
         //victory/played - cocktail - gamemode - difficulty
         _preferencesVictoryKey = "victory-virgin_daiquiri-classique-normal";
         _preferencesGamePlayedKey = "played-virgin_daiquiri-classique-normal";
-
-        fillGridLayout(initCardList(R.drawable.img_virgin_daiquiri));
+        fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
     }
 
     @Override
@@ -119,12 +119,13 @@ public class GameActivity extends AppCompatActivity {
         _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
         _cardsGrid.setColumnCount(col);
         _cardsGrid.setRowCount(row);
+        _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
     }
 
     private ArrayList<CardFragment> initCardList(int cocktailId)
     {
         ArrayList cards = new ArrayList<CardFragment>();
-        int[] images = new int[4];
+        int[] images = new int[6];
         switch(cocktailId)
         {
             case R.drawable.img_virgin_daiquiri :
@@ -133,14 +134,18 @@ public class GameActivity extends AppCompatActivity {
                 images[1] = R.drawable.fraise;
                 images[2] = R.drawable.glacon;
                 images[3] = R.drawable.sucre_canne;
+                images[4] = R.drawable.citron_vert;
+                images[5] = R.drawable.menthe;
 
                 break;
             case R.drawable.img_virgin_mojito :
-                //load virgin mojito image
+                //load virgin mojito images
                 images[0] = R.drawable.citron_vert;
                 images[1] = R.drawable.glacon;
-                images[2] = R.drawable.lemonade;
+                images[2] = R.drawable.eau_gazeuse;
                 images[3] =  R.drawable.menthe;
+                images[4] = R.drawable.sucre_canne;
+                images[5] = R.drawable.applejuice;
                 break;
             case R.drawable.img_virgin_pina_colada :
                 //load virgin pina colada images
@@ -148,13 +153,15 @@ public class GameActivity extends AppCompatActivity {
                 images[1] = R.drawable.noix_coco;
                 images[2] = R.drawable.glacon;
                 images[3] = R.drawable.sucre_canne;
+                images[4] = R.drawable.cerise;
+                images[5] = R.drawable.lemon;
                 break;
             default:
                 break;
         }
 
         for(int i=0; i<_nbPairToPlay; i++){
-            GenerateCardPair(images[i%4], cards);
+            GenerateCardPair(images[i%6], cards);
         }
 
         Collections.shuffle(cards);
