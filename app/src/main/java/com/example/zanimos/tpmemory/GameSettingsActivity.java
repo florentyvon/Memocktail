@@ -32,6 +32,14 @@ public class GameSettingsActivity extends AppCompatActivity {
         bindEvents();
     }
 
+    private void initComponents(){
+        _spinnerCocktails = findViewById(R.id.spinnerCocktailToPlay);
+        _spinnerDifficulty = findViewById(R.id.spinnerDifficultyToPlay);
+        _spinnerGameMode = findViewById(R.id.spinnerGameModeToPlay);
+        _cocktailImage = findViewById(R.id.imageViewCocktailToPlay);
+        _playButton = findViewById(R.id.playButton);
+    }
+
     private void bindEvents(){
         _spinnerCocktails.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -75,14 +83,6 @@ public class GameSettingsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
-
-    private void initComponents(){
-        _spinnerCocktails = findViewById(R.id.spinnerCocktailToPlay);
-        _spinnerDifficulty = findViewById(R.id.spinnerDifficultyToPlay);
-        _spinnerGameMode = findViewById(R.id.spinnerGameModeToPlay);
-        _cocktailImage = findViewById(R.id.imageViewCocktailToPlay);
-        _playButton = findViewById(R.id.playButton);
     }
 
     private void setSpinners(){

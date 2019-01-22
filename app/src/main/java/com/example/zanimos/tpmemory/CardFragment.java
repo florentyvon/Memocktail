@@ -54,6 +54,17 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         ((GameActivity) getActivity()).compareCardSelected(this);
     }
 
+    private void initComponents(View view) {
+        _image = view.findViewById(R.id.cocktailImageView);
+    }
+
+    private void setParameters() {
+        _imageId = getArguments().getInt("image_id");
+        _isFound = false;
+    }
+
+    public int get_imageId() { return _imageId; }
+
     public void setImageVisibility(boolean b) {
         // avoid change if card already found
         if(_isFound) return;
@@ -73,15 +84,4 @@ public class CardFragment extends Fragment implements View.OnClickListener {
             _image.setClickable(false);
         }
     }
-
-    private void initComponents(View view) {
-        _image = view.findViewById(R.id.cocktailImageView);
-    }
-
-    private void setParameters() {
-        _imageId = getArguments().getInt("image_id");
-        _isFound = false;
-    }
-
-    public int get_imageId() { return _imageId; }
 }

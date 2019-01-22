@@ -60,5 +60,4 @@ public class SharedPreferencesManager {
 
         return stringBuilder.insert(0, tokenType+"-").toString();
     }
-
 }

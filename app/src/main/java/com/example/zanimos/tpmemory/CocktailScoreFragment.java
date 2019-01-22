@@ -52,28 +52,18 @@ public class CocktailScoreFragment extends Fragment implements AdapterView.OnIte
         setSpinners();
         setScore();
     }
-
-    private void bindEvents(){
-        _spinnerDifficulty.setOnItemSelectedListener(this);
-        _spinnerGameMode.setOnItemSelectedListener(this);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        setScore();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
     private void initComponents()
     {
         _spinnerDifficulty = (Spinner) _currentView.findViewById(R.id.spinnerDifficulty);
         _spinnerGameMode = (Spinner) _currentView.findViewById(R.id.spinnerGameMode);
         _textViewScorePlayedGames = _currentView.findViewById(R.id.textViewScorePlayedGames);
         _textViewScoreVictories = _currentView.findViewById(R.id.textViewScoreVictories);
+    }
+
+    private void bindEvents()
+    {
+        _spinnerDifficulty.setOnItemSelectedListener(this);
+        _spinnerGameMode.setOnItemSelectedListener(this);
     }
 
     private void setSpinners()
@@ -146,5 +136,15 @@ public class CocktailScoreFragment extends Fragment implements AdapterView.OnIte
 
         _textViewScorePlayedGames.setText(tempNbPlayed);
         _textViewScoreVictories.setText(tempScore);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        setScore();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

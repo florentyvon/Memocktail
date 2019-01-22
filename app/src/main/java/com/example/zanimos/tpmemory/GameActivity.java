@@ -1,27 +1,12 @@
 package com.example.zanimos.tpmemory;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -62,6 +47,12 @@ public class GameActivity extends AppCompatActivity {
         // Get SharedPreferencesManager Instance
         _preferencesManager = SharedPreferencesManager.Instance(getApplicationContext());
         _preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
+    }
+
+    private void initComponents()
+    {
+        _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
+        _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
     }
 
     private void setDifficulty(String difficulty)
@@ -114,61 +105,6 @@ public class GameActivity extends AppCompatActivity {
         {
             // TODO : lancer service chrono
         }
-    }
-
-    public void compareCardSelected(CardFragment clickedCard)
-    {
-        if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
-
-        if(_cardsSelected[0]!= null && _cardsSelected[1] != null){
-            // hide selected cards
-            _cardsSelected[0].setImageVisibility(false);
-            _cardsSelected[1].setImageVisibility(false);
-            //reset selected cards
-            _cardsSelected[0] = null;
-            _cardsSelected[1] = null;
-        }
-
-        clickedCard.setImageVisibility(true);
-
-        if(_cardsSelected[0] == null)
-        {
-            // no card already selected
-            _cardsSelected[0] = clickedCard;
-        }
-        else
-        {
-            _cardsSelected[1] = clickedCard;
-            if(_cardsSelected[0].get_imageId() == _cardsSelected[1].get_imageId()) {
-                --_nbPairToPlay;
-                _cardsSelected[0].setCardFound();
-                _cardsSelected[1].setCardFound();
-
-                if (_nbPairToPlay == 0) {
-                    finishGame(true);
-                }
-            }
-        }
-    }
-
-    private void finishGame(boolean win)
-    {
-        Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();
-        if(win)
-        {
-            _preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
-        }
-
-        // Back to Menu
-        Intent i = new Intent(this.getApplicationContext(), MenuActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    private void initComponents()
-    {
-        _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
-        _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
     }
 
     private void fillGridLayout(ArrayList<CardFragment> cardsToPlay)
@@ -238,5 +174,54 @@ public class GameActivity extends AppCompatActivity {
         cards.add(cf);
         cf = CardFragment.Instantiate(imageId);
         cards.add(cf);
+    }
+
+    public void compareCardSelected(CardFragment clickedCard)
+    {
+        if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
+
+        if(_cardsSelected[0]!= null && _cardsSelected[1] != null){
+            // hide selected cards
+            _cardsSelected[0].setImageVisibility(false);
+            _cardsSelected[1].setImageVisibility(false);
+            //reset selected cards
+            _cardsSelected[0] = null;
+            _cardsSelected[1] = null;
+        }
+
+        clickedCard.setImageVisibility(true);
+
+        if(_cardsSelected[0] == null)
+        {
+            // no card already selected
+            _cardsSelected[0] = clickedCard;
+        }
+        else
+        {
+            _cardsSelected[1] = clickedCard;
+            if(_cardsSelected[0].get_imageId() == _cardsSelected[1].get_imageId()) {
+                --_nbPairToPlay;
+                _cardsSelected[0].setCardFound();
+                _cardsSelected[1].setCardFound();
+
+                if (_nbPairToPlay == 0) {
+                    finishGame(true);
+                }
+            }
+        }
+    }
+
+    private void finishGame(boolean win)
+    {
+        Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();
+        if(win)
+        {
+            _preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
+        }
+
+        // Back to Menu
+        Intent i = new Intent(this.getApplicationContext(), MenuActivity.class);
+        startActivity(i);
+        finish();
     }
 }
