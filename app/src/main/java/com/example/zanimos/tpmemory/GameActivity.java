@@ -35,20 +35,94 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        setTitle("Mémocktail");
-        initComponents(4,3);
-        _nbPairToPlay = 6;
-        _cardsSelected = new CardFragment[2];
-        //victory/played - cocktail - gamemode - difficulty
+        initComponents();
+
+        Bundle bd = getIntent().getExtras();
+        if(bd!=null){
+            String bdDifficulty = bd.getString("DIFFICULTY");
+            String bdCocktail = bd.getString("COCKTAIL");
+            String bdGameMode = bd.getString("GAME_MODE");
+
+            setPreferencesToken(bdDifficulty, bdCocktail, bdGameMode);
+            setDifficulty(bdDifficulty);
+            setCocktail(bdCocktail);
+            setGameMode(bdGameMode);
+        }
+
         _preferencesVictoryKey = "victory-virgin_daiquiri-classique-normal";
         _preferencesGamePlayedKey = "played-virgin_daiquiri-classique-normal";
-        fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
+        //fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
     }
 
     @Override
     protected void onStart(){
         super.onStart();
+        _cardsSelected = new CardFragment[2];
         storeGameStart();
+    }
+
+    private void setDifficulty(String difficulty)
+    {
+        switch(difficulty)
+        {
+            case "Facile":
+                // 12 cards
+                _cardsGrid.setColumnCount(4);
+                _cardsGrid.setRowCount(3);
+                _nbPairToPlay = 6;
+                break;
+            case "Difficile":
+                // 16 cards
+                _cardsGrid.setColumnCount(4);
+                _cardsGrid.setRowCount(4);
+                _nbPairToPlay = 8;
+                break;
+            default:
+                // 12 cards
+                _cardsGrid.setColumnCount(4);
+                _cardsGrid.setRowCount(3);
+                _nbPairToPlay = 6;
+                break;
+        }
+    }
+
+    private void setCocktail(String cocktail)
+    {
+        switch (cocktail)
+        {
+            case "Virgin Daiquiri":
+                fillGridLayout(initCardList(R.drawable.img_virgin_daiquiri));
+                break;
+            case "Virgin Mojito":
+                fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
+                break;
+            case "Virgin Pina Colada":
+                fillGridLayout(initCardList(R.drawable.img_virgin_pina_colada));
+                break;
+            default :
+                fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
+                break;
+        }
+    }
+
+    private void setGameMode(String gameMode)
+    {
+        if(("Difficile").equals(gameMode))
+        {
+            // TODO : lancer service chrono
+        }
+    }
+
+    private void setPreferencesToken(String bdDifficulty, String bdCocktail, String bdGameMode)
+    {
+        // token pattern : victory/played-cocktail-gamemode-difficulty
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(bdCocktail+"-");
+        stringBuilder.append(bdGameMode+"-");
+        stringBuilder.append(bdDifficulty);
+
+        _preferencesVictoryKey = stringBuilder.insert(0, "victory-").toString();
+        _preferencesGamePlayedKey = stringBuilder.insert(0, "played-").toString();
     }
 
     private void storeGameStart()
@@ -114,12 +188,25 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void initComponents(int row, int col)
+    private void initComponents()
     {
         _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
-        _cardsGrid.setColumnCount(col);
-        _cardsGrid.setRowCount(row);
         _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
+    }
+
+    private void fillGridLayout(ArrayList<CardFragment> cardsToPlay)
+    {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction;
+
+        _cardsGrid.removeAllViews();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        for(CardFragment cf : cardsToPlay)
+        {
+            fragmentTransaction.add(_cardsGrid.getId(),cf,null);
+        }
+        fragmentTransaction.commit();
     }
 
     private ArrayList<CardFragment> initCardList(int cocktailId)
@@ -174,20 +261,5 @@ public class GameActivity extends AppCompatActivity {
         cards.add(cf);
         cf = CardFragment.Instantiate(imageId);
         cards.add(cf);
-    }
-
-    private void fillGridLayout(ArrayList<CardFragment> cardsToPlay)
-    {
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction;
-
-        _cardsGrid.removeAllViews();
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        for(CardFragment cf : cardsToPlay)
-        {
-            fragmentTransaction.add(_cardsGrid.getId(),cf,null);
-        }
-        fragmentTransaction.commit();
     }
 }

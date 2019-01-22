@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/cocktailImageView"
-        android:layout_width="130dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/descriptionducocktail"
         android:src="@drawable/dos_carte"/>
 </LinearLayout>

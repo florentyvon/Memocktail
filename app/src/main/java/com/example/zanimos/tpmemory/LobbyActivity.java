@@ -1,6 +1,7 @@
 package com.example.zanimos.tpmemory;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,8 +24,7 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
-        layout = (ConstraintLayout) findViewById(R.id.Layout);
-        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        initComponents();
         setSupportActionBar(mTopToolbar);
     }
 
@@ -61,5 +61,10 @@ public class LobbyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initComponents(){
+        layout = (ConstraintLayout) findViewById(R.id.Layout);
+        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
     }
 }

@@ -10,7 +10,6 @@ import com.example.zanimos.tpmemory.LobbyActivity;
 
 public class MenuActivity extends AppCompatActivity  implements View.OnClickListener {
 
-    private Button buttonClassique;
     private Button buttonChrono;
     private Button buttonHisto;
 
@@ -18,15 +17,23 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
+        initComponents();
+    }
 
-        buttonChrono = (Button) findViewById(R.id.button_chrono);
-        buttonClassique = (Button) findViewById(R.id.button_classique);
-        buttonHisto = (Button) findViewById(R.id.button_histo);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bindEvents();
+    }
 
+    private void bindEvents(){
         buttonChrono.setOnClickListener(this);
-        buttonClassique.setOnClickListener(this);
         buttonHisto.setOnClickListener(this);
+    }
 
+    private void initComponents(){
+        buttonChrono = (Button) findViewById(R.id.button_chrono);
+        buttonHisto = (Button) findViewById(R.id.button_histo);
     }
 
     @Override
@@ -34,12 +41,8 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
         Intent intent;
         switch (v.getId())
         {
-            case R.id.button_classique:
-                intent = new Intent(getApplicationContext(), GameActivity.class);
-                startActivity(intent);
-                break;
             case R.id.button_chrono:
-                intent = new Intent(getApplicationContext(), ATCActivity.class);
+                intent = new Intent(getApplicationContext(), GameSettingsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button_histo:

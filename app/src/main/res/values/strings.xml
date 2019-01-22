@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">TPMemory</string>
+    <string name="app_name">Mémocktail</string>
     <string name="descriptionlobby">Pour apprendre à faire des cocktails savoureux!</string>
     <string name="welcomelobby">Bienvenue dans le monde de Mocktail</string>
-    <string name="mode_classique">Mode classique</string>
-    <string name="mode_chrono">Mode chrono</string>
+    <string name="jeu">Jouer</string>
     <string name="historique">Historique</string>
     <string name="descriptionducocktail">cocktaildescription</string>
     <string name="virgin_daiquiri">Virgin daiquiri</string>
@@ -17,4 +16,5 @@
     <string name="atc">Contre La Montre</string>
     <string name="played_games">Parties Jouées</string>
     <string name="victories">Victoires</string>
+    <string name="cocktail">Cocktail</string>
 </resources>
