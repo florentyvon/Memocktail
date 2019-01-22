@@ -48,7 +48,6 @@ public class GameActivity extends AppCompatActivity {
             _cocktail = bd.getString("COCKTAIL");
             _gameMode = bd.getString("GAME_MODE");
 
-            //setPreferencesToken(bdDifficulty, bdCocktail, bdGameMode);
             setDifficulty(_difficulty);
             setCocktail(_cocktail);
             setGameMode(_gameMode);
@@ -116,30 +115,7 @@ public class GameActivity extends AppCompatActivity {
             // TODO : lancer service chrono
         }
     }
-/*
-    private void setPreferencesToken(String bdDifficulty, String bdCocktail, String bdGameMode)
-    {
-        // token pattern : victory/played-cocktail-gamemode-difficulty
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(bdCocktail.toLowerCase().replace(" ", "_")+"-");
-        stringBuilder.append(bdGameMode.toLowerCase().replace(" ", "_")+"-");
-        stringBuilder.append(bdDifficulty.toLowerCase().replace(" ", "_"));
 
-        _preferencesVictoryKey = "victory-" + stringBuilder.toString();
-        _preferencesGamePlayedKey = "played-" + stringBuilder.toString();
-    }
-
-    private void storeGameStart()
-    {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = prefs.edit();
-
-        int gamePlayed = prefs.getInt(_preferencesGamePlayedKey, 0);
-        ++gamePlayed;
-        editor.putInt(_preferencesGamePlayedKey, gamePlayed);
-        editor.apply();
-    }
-*/
     public void compareCardSelected(CardFragment clickedCard)
     {
         if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
