@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -48,10 +49,6 @@ public class GameActivity extends AppCompatActivity {
             setCocktail(bdCocktail);
             setGameMode(bdGameMode);
         }
-
-        _preferencesVictoryKey = "victory-virgin_daiquiri-classique-normal";
-        _preferencesGamePlayedKey = "played-virgin_daiquiri-classique-normal";
-        //fillGridLayout(initCardList(R.drawable.img_virgin_mojito));
     }
 
     @Override
@@ -67,8 +64,8 @@ public class GameActivity extends AppCompatActivity {
         {
             case "Facile":
                 // 12 cards
-                _cardsGrid.setColumnCount(4);
-                _cardsGrid.setRowCount(3);
+                _cardsGrid.setColumnCount(3);
+                _cardsGrid.setRowCount(4);
                 _nbPairToPlay = 6;
                 break;
             case "Difficile":
@@ -117,17 +114,17 @@ public class GameActivity extends AppCompatActivity {
     {
         // token pattern : victory/played-cocktail-gamemode-difficulty
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(bdCocktail+"-");
-        stringBuilder.append(bdGameMode+"-");
-        stringBuilder.append(bdDifficulty);
+        stringBuilder.append(bdCocktail.toLowerCase().replace(" ", "_")+"-");
+        stringBuilder.append(bdGameMode.toLowerCase().replace(" ", "_")+"-");
+        stringBuilder.append(bdDifficulty.toLowerCase().replace(" ", "_"));
 
-        _preferencesVictoryKey = stringBuilder.insert(0, "victory-").toString();
-        _preferencesGamePlayedKey = stringBuilder.insert(0, "played-").toString();
+        _preferencesVictoryKey = "victory-" + stringBuilder.toString();
+        _preferencesGamePlayedKey = "played-" + stringBuilder.toString();
     }
 
     private void storeGameStart()
     {
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
 
         int gamePlayed = prefs.getInt(_preferencesGamePlayedKey, 0);

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CocktailScoreFragment extends Fragment {
 
@@ -50,11 +52,14 @@ public class CocktailScoreFragment extends Fragment {
         bindEvents();
         setScore();
 
-        SharedPreferences prefs = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity().getApplicationContext());
+
+        /*Toast.makeText(getContext(), prefs.getInt(
+                "victory-virgin_daiquiri-classique-facile", 0), Toast.LENGTH_SHORT).show();*/
 
         _textViewScoreVictories.setText(
                 String.valueOf(prefs.getInt(
-                        "victory-virgin_daiquiri-classique-normal", 0)
+                        "victory-virgin_daiquiri-classique-facile", 0)
                 ));
     }
 
