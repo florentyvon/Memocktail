@@ -1,10 +1,13 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.historic;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.historic.CocktailScoreFragment;
 
 /***
  * Fragment pager adapter implementation

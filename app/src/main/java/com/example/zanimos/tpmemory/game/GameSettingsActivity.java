@@ -1,4 +1,4 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.game;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import com.example.zanimos.tpmemory.R;
 
 /***
  * Game settings activity

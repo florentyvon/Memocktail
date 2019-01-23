@@ -1,4 +1,4 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.main;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
@@ -9,6 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.zanimos.tpmemory.menu.MenuActivity;
+import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 
 /***
  * Lobby activity (main activity)

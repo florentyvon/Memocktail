@@ -1,4 +1,4 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.historic;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 
 /***
  * Historic score fragment

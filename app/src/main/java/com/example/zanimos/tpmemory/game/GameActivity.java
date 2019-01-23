@@ -1,4 +1,4 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.game;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
 import android.widget.Toast;
+
+import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
+import com.example.zanimos.tpmemory.menu.MenuActivity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

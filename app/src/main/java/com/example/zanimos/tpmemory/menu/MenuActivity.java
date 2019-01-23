@@ -1,10 +1,14 @@
-package com.example.zanimos.tpmemory;
+package com.example.zanimos.tpmemory.menu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.zanimos.tpmemory.game.GameSettingsActivity;
+import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.historic.HistoricActivity;
 
 /***
  * Menu activity

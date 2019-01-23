@@ -5,7 +5,7 @@
     android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LobbyActivity">
+    tools:context=".main.LobbyActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
