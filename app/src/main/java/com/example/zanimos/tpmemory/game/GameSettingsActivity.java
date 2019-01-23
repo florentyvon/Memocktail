@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 /***
  * Game settings activity
@@ -43,6 +44,12 @@ public class GameSettingsActivity extends AppCompatActivity {
         super.onStart();
         setSpinners();
         bindEvents();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopService(new Intent(this, BackgroundSoundService.class));
     }
 
     /***

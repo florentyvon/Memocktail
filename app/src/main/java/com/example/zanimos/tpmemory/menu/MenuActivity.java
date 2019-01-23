@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.zanimos.tpmemory.services.BackgroundSound;
 import com.example.zanimos.tpmemory.game.GameSettingsActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.historic.HistoricActivity;
+import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 /***
  * Menu activity

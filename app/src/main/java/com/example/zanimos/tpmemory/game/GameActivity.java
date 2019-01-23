@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
+import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,6 +71,10 @@ public class GameActivity extends AppCompatActivity {
         setDifficulty(_difficulty);
         setCocktail(_cocktail);
         setGameMode(_gameMode);
+
+        Intent intent = new Intent(this, BackgroundSoundService.class);
+        intent.putExtra("sound","game");
+        startService(intent);
     }
 
     /***
