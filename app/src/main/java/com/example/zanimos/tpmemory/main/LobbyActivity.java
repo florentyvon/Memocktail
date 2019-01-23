@@ -55,13 +55,11 @@ public class LobbyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-<<<<<<< refs/remotes/origin/master
+
         Intent intent = new Intent(this, BackgroundSoundService.class);
         intent.putExtra("sound","lobby");
         startService(intent);
-=======
-        startService(new Intent(this, BackgroundSoundService.class));
->>>>>>> rename sound service
+
     }
 
     /***

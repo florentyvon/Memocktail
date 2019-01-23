@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     private String _cocktail;
     private String _gameMode;
     private int _timer;
+    private Intent intent;
 
 
     /***
@@ -72,8 +73,6 @@ public class GameActivity extends AppCompatActivity {
         setCocktail(_cocktail);
         setGameMode(_gameMode);
 
-        Intent intent = new Intent(this, BackgroundSoundService.class);
-        intent.putExtra("sound","game");
         startService(intent);
     }
 
@@ -148,8 +147,16 @@ public class GameActivity extends AppCompatActivity {
      */
     private void setGameMode(String gameMode)
     {
-        if(getString(R.string.atc).equals(gameMode)) startTimer();
-        else _chronoTextView.setEnabled(false);
+        if(getString(R.string.atc).equals(gameMode)){
+            startTimer();
+            intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound","countdown");
+        }
+        else{
+            _chronoTextView.setEnabled(false);
+            intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound","game");
+        }
     }
 
     /***
