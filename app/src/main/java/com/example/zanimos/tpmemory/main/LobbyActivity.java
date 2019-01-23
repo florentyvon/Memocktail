@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.zanimos.tpmemory.AProposActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
@@ -59,7 +60,6 @@ public class LobbyActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BackgroundSoundService.class);
         intent.putExtra("sound","lobby");
         startService(intent);
-
     }
 
     /***
@@ -98,6 +98,19 @@ public class LobbyActivity extends AppCompatActivity {
             vOn.setVisible(true);
             Toast.makeText(LobbyActivity.this, "volume off", Toast.LENGTH_LONG).show();
         }
+
+        switch (item.getItemId())
+        {
+            case R.id.volumeON:
+                break;
+            case R.id.aPropos:
+                Intent i = new Intent(this, AProposActivity.class);
+                startActivity(i);
+                break;
+            default :
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

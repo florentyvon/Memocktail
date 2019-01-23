@@ -6,17 +6,22 @@
 
     <item
         android:id="@+id/volumeON"
+        android:title="Volume"
         android:orderInCategory="300"
-        android:title="User"
         android:icon="@drawable/ic_volume"
         app:showAsAction="ifRoom"></item>
 
     <item
         android:id="@+id/volumeOFF"
         android:orderInCategory="300"
-        android:title="User"
         android:icon="@drawable/ic_volume_off"
         app:showAsAction="ifRoom"
         android:visible="false"></item>
+
+    <item
+        android:id="@+id/aPropos"
+        android:title="À propos"
+        android:orderInCategory="300"
+        app:showAsAction="never"></item>
 
 </menu>
