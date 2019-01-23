@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -164,9 +165,10 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("sound","countdown");
         }
         else{
-            _chronoTextView.setVisibility(View.INVISIBLE);
+            _chronoTextView.setVisibility(View.GONE);
             intent = new Intent(this, BackgroundSoundService.class);
             intent.putExtra("sound","game");
+            _cardsGrid.setPadding(0,100,0,100);
         }
     }
 
@@ -301,27 +303,31 @@ public class GameActivity extends AppCompatActivity {
 
         // if click on card after having click on two previous card
         if(_cardsSelected[0]!= null && _cardsSelected[1] != null ){
+            //test if pair was found
             if(!_found){
                 // hide selected cards
-                ObjectAnimator animation1 = ObjectAnimator.ofFloat(_cardsSelected[0].getView(), "rotationY", 90f,0f);
-                animation1.setDuration(400);
-                animation1.setInterpolator(new AccelerateDecelerateInterpolator());
-                ObjectAnimator animation0 = ObjectAnimator.ofFloat(_cardsSelected[1].getView(), "rotationY", 90f,0f);
-                animation0.setDuration(400);
-                animation0.setInterpolator(new AccelerateDecelerateInterpolator());
-                animation1.start();
-                animation0.start();
+                //inverse rotation
+                ObjectAnimator animC1 = ObjectAnimator.ofFloat(_cardsSelected[0].getView(), "rotationY", 90f,0f);
+                animC1.setDuration(400);
+                animC1.setInterpolator(new AccelerateDecelerateInterpolator());
+                ObjectAnimator animC2 = ObjectAnimator.ofFloat(_cardsSelected[1].getView(), "rotationY", 90f,0f);
+                animC2.setDuration(400);
+                animC2.setInterpolator(new AccelerateDecelerateInterpolator());
+                animC1.start();
+                animC2.start();
                 _cardsSelected[0].setImageVisibility(false);
                 _cardsSelected[1].setImageVisibility(false);
             }
-            //reset selected cards
+            //reset selected cards whatever
             _cardsSelected[0] = null;
             _cardsSelected[1] = null;
         }
-        ObjectAnimator animation = ObjectAnimator.ofFloat(clickedCard.getView(), "rotationY", -90f,0f);
-        animation.setDuration(400);
-        animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.start();
+
+        //rotate card
+        ObjectAnimator anim = ObjectAnimator.ofFloat(clickedCard.getView(), "rotationY", -90f,0f);
+        anim.setDuration(400);
+        anim.setInterpolator(new AccelerateDecelerateInterpolator());
+        anim.start();
         clickedCard.setImageVisibility(true);
 
 

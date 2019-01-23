@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/game">
 
     <GridLayout
         android:id="@+id/cardsGrid"
@@ -18,9 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="5"
+        android:layout_weight="7"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="50sp"
-        android:textStyle="bold"
-        android:enabled="false"/>
+        android:textStyle="bold"/>
 </LinearLayout>
