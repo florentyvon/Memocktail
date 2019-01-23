@@ -1,11 +1,15 @@
 package com.example.zanimos.tpmemory.game;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     private String _gameMode;
     private int _timer;
     private Intent intent;
+    private boolean _found;
 
 
     /***
@@ -74,6 +79,12 @@ public class GameActivity extends AppCompatActivity {
         setGameMode(_gameMode);
 
         startService(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(new Intent(this, BackgroundSoundService.class));
     }
 
     /***
@@ -153,7 +164,7 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("sound","countdown");
         }
         else{
-            _chronoTextView.setEnabled(false);
+            _chronoTextView.setVisibility(View.INVISIBLE);
             intent = new Intent(this, BackgroundSoundService.class);
             intent.putExtra("sound","game");
         }
@@ -289,16 +300,31 @@ public class GameActivity extends AppCompatActivity {
         if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
 
         // if click on card after having click on two previous card
-        if(_cardsSelected[0]!= null && _cardsSelected[1] != null){
-            // hide selected cards
-            _cardsSelected[0].setImageVisibility(false);
-            _cardsSelected[1].setImageVisibility(false);
+        if(_cardsSelected[0]!= null && _cardsSelected[1] != null ){
+            if(!_found){
+                // hide selected cards
+                ObjectAnimator animation1 = ObjectAnimator.ofFloat(_cardsSelected[0].getView(), "rotationY", 90f,0f);
+                animation1.setDuration(400);
+                animation1.setInterpolator(new AccelerateDecelerateInterpolator());
+                ObjectAnimator animation0 = ObjectAnimator.ofFloat(_cardsSelected[1].getView(), "rotationY", 90f,0f);
+                animation0.setDuration(400);
+                animation0.setInterpolator(new AccelerateDecelerateInterpolator());
+                animation1.start();
+                animation0.start();
+                _cardsSelected[0].setImageVisibility(false);
+                _cardsSelected[1].setImageVisibility(false);
+            }
             //reset selected cards
             _cardsSelected[0] = null;
             _cardsSelected[1] = null;
         }
-
+        ObjectAnimator animation = ObjectAnimator.ofFloat(clickedCard.getView(), "rotationY", -90f,0f);
+        animation.setDuration(400);
+        animation.setInterpolator(new AccelerateDecelerateInterpolator());
+        animation.start();
         clickedCard.setImageVisibility(true);
+
+
 
         if(_cardsSelected[0] == null)
         {
@@ -314,10 +340,13 @@ public class GameActivity extends AppCompatActivity {
                 --_nbPairToPlay;
                 _cardsSelected[0].setCardFound();
                 _cardsSelected[1].setCardFound();
+                _found = true;
 
                 if (_nbPairToPlay == 0) {
                     finishGame(true);
                 }
+            }else{
+                _found = false;
             }
         }
     }

@@ -107,6 +107,12 @@ public class LobbyActivity extends AppCompatActivity {
         stopService(new Intent(this, BackgroundSoundService.class));
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(new Intent(this, BackgroundSoundService.class));
+    }
+
     /***
      * Activity components init
      */
