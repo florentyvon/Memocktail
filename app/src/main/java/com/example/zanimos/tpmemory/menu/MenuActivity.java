@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.zanimos.tpmemory.sound.Sound;
+import com.example.zanimos.tpmemory.services.BackgroundSound;
 import com.example.zanimos.tpmemory.game.GameSettingsActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.historic.HistoricActivity;
@@ -19,8 +19,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
 
     private Button buttonGame;
     private Button buttonHisto;
-    private Button stop;
-    private Button start;
 
     /***
      * onCreate activity event
@@ -48,8 +46,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
     private void bindEvents(){
         buttonGame.setOnClickListener(this);
         buttonHisto.setOnClickListener(this);
-        stop.setOnClickListener(this);
-        start.setOnClickListener(this);
     }
 
     /***
@@ -58,8 +54,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
     private void initComponents(){
         buttonGame = (Button) findViewById(R.id.button_game);
         buttonHisto = (Button) findViewById(R.id.button_histo);
-        stop = (Button) findViewById(R.id.button_stop);
-        start = (Button) findViewById(R.id.button_start);
     }
 
     /***
@@ -78,12 +72,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.button_histo:
                 intent = new Intent(getApplicationContext(), HistoricActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.button_stop:
-                stopService(new Intent(this, Sound.class));
-                break;
-            case R.id.button_start:
-                startService(new Intent(this, Sound.class));
                 break;
         }
     }

@@ -23,7 +23,7 @@
         <activity android:name=".game.GameActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".historic.HistoricActivity" android:screenOrientation="portrait"/>
         <activity android:name=".game.GameSettingsActivity" android:screenOrientation="portrait"/>
-        <service android:name=".sound.Sound"/>
+        <service android:name=".services.BackgroundSound"/>
     </application>
 
 </manifest>

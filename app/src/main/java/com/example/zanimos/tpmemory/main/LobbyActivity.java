@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.zanimos.tpmemory.R;
-import com.example.zanimos.tpmemory.sound.Sound;
+import com.example.zanimos.tpmemory.services.BackgroundSound;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
 
@@ -55,7 +55,7 @@ public class LobbyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        startService(new Intent(this, Sound.class));
+        startService(new Intent(this, BackgroundSound.class));
     }
 
     /***

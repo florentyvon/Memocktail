@@ -1,15 +1,14 @@
-package com.example.zanimos.tpmemory.sound;
+package com.example.zanimos.tpmemory.services;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 
 import com.example.zanimos.tpmemory.R;
 
-public class Sound extends Service {
+public class BackgroundSound extends Service {
     private MediaPlayer mMediaPlayer;
 
     @Nullable
