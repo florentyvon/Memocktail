@@ -1,18 +1,20 @@
 package com.example.zanimos.tpmemory.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.zanimos.tpmemory.menu.MenuActivity;
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.sound.Sound;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
+import com.example.zanimos.tpmemory.menu.MenuActivity;
 
 /***
  * Lobby activity (main activity)
@@ -53,6 +55,7 @@ public class LobbyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        startService(new Intent(this, Sound.class));
     }
 
     /***
@@ -80,13 +83,19 @@ public class LobbyActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_favorite) {
-            Toast.makeText(LobbyActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
-            return true;
+        if (id == R.id.volumeON) {
+            ActionMenuItemView vOff = (ActionMenuItemView) findViewById(R.id.volumeOFF);
+            item.setVisible(false);
+            vOff.setVisibility(View.VISIBLE);
+            Toast.makeText(LobbyActivity.this, "volume off", Toast.LENGTH_LONG).show();
+        }else{
+            MenuItem vOn = (MenuItem) findViewById(R.id.volumeON);
+            item.setVisible(false);
+            vOn.setVisible(true);
+            Toast.makeText(LobbyActivity.this, "volume off", Toast.LENGTH_LONG).show();
         }
-
         return super.onOptionsItemSelected(item);
-    }
+}
 
     /***
      * Activity components init

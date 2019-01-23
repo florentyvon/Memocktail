@@ -5,10 +5,18 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/volumeON"
         android:orderInCategory="300"
         android:title="User"
         android:icon="@drawable/ic_volume"
         app:showAsAction="ifRoom"></item>
+
+    <item
+        android:id="@+id/volumeOFF"
+        android:orderInCategory="300"
+        android:title="User"
+        android:icon="@drawable/ic_volume_off"
+        app:showAsAction="ifRoom"
+        android:visible="false"></item>
 
 </menu>
