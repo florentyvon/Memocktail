@@ -10,12 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+/***
+ * Lobby activity (main activity)
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class LobbyActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
     private Toolbar mTopToolbar;
     private SharedPreferencesManager _preferencesManager;
 
+    /***
+     * onCreate activity event
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +32,9 @@ public class LobbyActivity extends AppCompatActivity {
         setSupportActionBar(mTopToolbar);
     }
 
+    /***
+     * onStart activity event
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -40,6 +51,11 @@ public class LobbyActivity extends AppCompatActivity {
         });
     }
 
+    /***
+     * onCreateOptionsMenu toolbar event
+     * @param menu
+     * @return boolean : success
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -47,6 +63,11 @@ public class LobbyActivity extends AppCompatActivity {
         return true;
     }
 
+    /***
+     * onOptionsItemSelected toolbar event
+     * @param item
+     * @return boolean : success
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -63,6 +84,9 @@ public class LobbyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /***
+     * Activity components init
+     */
     private void initComponents(){
         layout = (ConstraintLayout) findViewById(R.id.Layout);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);

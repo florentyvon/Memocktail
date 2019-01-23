@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <Button
-        android:id="@+id/button_chrono"
+        android:id="@+id/button_game"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"

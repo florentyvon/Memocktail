@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+/***
+ * Shared preferences manager
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class SharedPreferencesManager {
 
     private static SharedPreferencesManager _preferencesManager = null;

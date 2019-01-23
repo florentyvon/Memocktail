@@ -10,6 +10,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/***
+ * Main game activity
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class GameActivity extends AppCompatActivity {
 
     private SharedPreferencesManager _preferencesManager;
@@ -21,6 +25,10 @@ public class GameActivity extends AppCompatActivity {
     private String _cocktail;
     private String _gameMode;
 
+    /***
+     * onCreate activity event
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,9 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /***
+     * onStart activity event
+     */
     @Override
     protected void onStart(){
         super.onStart();
@@ -49,12 +60,19 @@ public class GameActivity extends AppCompatActivity {
         _preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
     }
 
+    /***
+     * Activity components init
+     */
     private void initComponents()
     {
         _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
         _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
     }
 
+    /***
+     * Difficulty setting
+     * @param difficulty : game difficulty
+     */
     private void setDifficulty(String difficulty)
     {
         switch(difficulty)
@@ -80,6 +98,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /***
+     * Cocktail to play setting
+     * @param cocktail : cocktail to play
+     */
     private void setCocktail(String cocktail)
     {
         switch (cocktail)
@@ -99,6 +121,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /***
+     * Game mode setting
+     * @param gameMode : game mode
+     */
     private void setGameMode(String gameMode)
     {
         if(("Difficile").equals(gameMode))
@@ -107,6 +133,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /***
+     * GridLayout filling with cards
+     * @param cardsToPlay : cards
+     */
     private void fillGridLayout(ArrayList<CardFragment> cardsToPlay)
     {
         FragmentManager fragmentManager = this.getSupportFragmentManager();
@@ -122,6 +152,11 @@ public class GameActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    /***
+     * Card list creation
+     * @param cocktailId
+     * @return ArrayList<CardFragment> : cards
+     */
     private ArrayList<CardFragment> initCardList(int cocktailId)
     {
         ArrayList cards = new ArrayList<CardFragment>();
@@ -168,6 +203,11 @@ public class GameActivity extends AppCompatActivity {
         return cards;
     }
 
+    /***
+     * Create two similar cards (a pair)
+     * @param imageId : card image (recto)
+     * @param cards : game card list to add new cards
+     */
     private void GenerateCardPair(int imageId, ArrayList<CardFragment> cards)
     {
         CardFragment cf = CardFragment.Instantiate(imageId);
@@ -176,10 +216,16 @@ public class GameActivity extends AppCompatActivity {
         cards.add(cf);
     }
 
+    /***
+     * Compare method for selected cards
+     * @param clickedCard : selectedCard
+     */
     public void compareCardSelected(CardFragment clickedCard)
     {
+        // if click two times on the same card
         if(_cardsSelected[0] != null && _cardsSelected[0].hashCode() == clickedCard.hashCode()) return;
 
+        // if click on card after having click on two previous card
         if(_cardsSelected[0]!= null && _cardsSelected[1] != null){
             // hide selected cards
             _cardsSelected[0].setImageVisibility(false);
@@ -198,8 +244,10 @@ public class GameActivity extends AppCompatActivity {
         }
         else
         {
+            // already selected card
             _cardsSelected[1] = clickedCard;
             if(_cardsSelected[0].get_imageId() == _cardsSelected[1].get_imageId()) {
+                // same image
                 --_nbPairToPlay;
                 _cardsSelected[0].setCardFound();
                 _cardsSelected[1].setCardFound();
@@ -211,6 +259,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /***
+     * Method to end the game
+     * @param win : Win/Loose ?
+     */
     private void finishGame(boolean win)
     {
         Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();

@@ -10,6 +10,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+/***
+ * Game settings activity
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class GameSettingsActivity extends AppCompatActivity {
 
     private Spinner _spinnerCocktails;
@@ -18,6 +22,10 @@ public class GameSettingsActivity extends AppCompatActivity {
     private ImageView _cocktailImage;
     private ImageButton _playButton;
 
+    /***
+     * onCreate activity event
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +33,9 @@ public class GameSettingsActivity extends AppCompatActivity {
         initComponents();
     }
 
+    /***
+     * onStart activity event
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -32,6 +43,9 @@ public class GameSettingsActivity extends AppCompatActivity {
         bindEvents();
     }
 
+    /***
+     * Activity components init
+     */
     private void initComponents(){
         _spinnerCocktails = findViewById(R.id.spinnerCocktailToPlay);
         _spinnerDifficulty = findViewById(R.id.spinnerDifficultyToPlay);
@@ -40,6 +54,9 @@ public class GameSettingsActivity extends AppCompatActivity {
         _playButton = findViewById(R.id.playButton);
     }
 
+    /***
+     * Event binding method
+     */
     private void bindEvents(){
         _spinnerCocktails.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -85,6 +102,9 @@ public class GameSettingsActivity extends AppCompatActivity {
         });
     }
 
+    /***
+     * Spinners setting
+     */
     private void setSpinners(){
         String[] cocktails = new String[] {"Virgin Daiquiri", "Virgin Mojito", "Virgin Pina Colada"};
         String[] difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};

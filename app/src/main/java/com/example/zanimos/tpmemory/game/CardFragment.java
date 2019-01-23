@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
+/***
+ * Memory card fragment
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class CardFragment extends Fragment implements View.OnClickListener {
 
     private ImageView _image;
@@ -32,6 +35,13 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         return cf;
     }
 
+    /***
+     * onCreateView fragment event
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view : fragment view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,26 +53,44 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    /***
+     * onStart fragment event
+     */
     @Override
     public void onStart() {
         super.onStart();
         _image.setOnClickListener(this);
     }
 
+    /***
+     * OnClick event : send to current card to the game manager to be compared
+     * @param view : current view
+     */
     @Override
     public void onClick(View view) {
         ((GameActivity) getActivity()).compareCardSelected(this);
     }
 
+    /***
+     * Fragment components init
+     * @param view : current view
+     */
     private void initComponents(View view) {
         _image = view.findViewById(R.id.cocktailImageView);
     }
 
+    /***
+     * Fragment parameters settings
+     */
     private void setParameters() {
         _imageId = getArguments().getInt("image_id");
         _isFound = false;
     }
 
+    /***
+     * Image id getter method
+     * @return int : fragment image id
+     */
     public int get_imageId() { return _imageId; }
 
     public void setImageVisibility(boolean b) {
