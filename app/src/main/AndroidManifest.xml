@@ -31,7 +31,7 @@
         <activity
             android:name=".game.GameSettingsActivity"
             android:screenOrientation="portrait" />
-        <service android:name=".services.BackgroundSound" />
+        <service android:name=".services.BackgroundSoundService" />
         <activity
             android:name=".game.GameResultActivity"
             android:screenOrientation="portrait"/>
