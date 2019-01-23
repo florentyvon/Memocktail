@@ -236,7 +236,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    private void displayScore(){
+    /***
+     * Chrono timer display
+     */
+    private void displayTimer(){
         int mins = _timer / 60000;
         int scds = _timer % 60000 / 1000;
 
@@ -250,13 +253,16 @@ public class GameActivity extends AppCompatActivity {
         _chronoTextView.setText(strTimer.toString());
     }
 
+    /***
+     * Start chrono timer
+     */
     private void startTimer()
     {
         _countDownTimer = new CountDownTimer(_timer, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 _timer = (int) millisUntilFinished;
-                displayScore();
+                displayTimer();
             }
 
             @Override

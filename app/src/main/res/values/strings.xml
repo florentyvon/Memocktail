@@ -18,4 +18,10 @@
     <string name="victories">Victoires</string>
     <string name="cocktail">Cocktail</string>
     <string name="menu">menu</string>
+    <string name="a_propos_title">À propos</string>
+    <string name="a_propos">
+        Rejoins le monde de Mocktail et apprends à réaliser des cocktails en
+        jouant au jeux du mémory.\n\n\n\n\n
+        Réalisé par : \nFlorent YVON\nMickaël MENEUX\nJulien RAILLARD
+    </string>
 </resources>

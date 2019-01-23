@@ -10,11 +10,19 @@ import android.widget.ImageView;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
 
+/***
+ * Game result activity
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class GameResultActivity extends AppCompatActivity {
 
     private ImageView _gameResultImage;
     private Button _backToMenuButton;
 
+    /***
+     * onCreate activity event
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +30,9 @@ public class GameResultActivity extends AppCompatActivity {
         initComponents();
     }
 
+    /***
+     * onStart activity event
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -39,6 +50,10 @@ public class GameResultActivity extends AppCompatActivity {
         });
     }
 
+    /***
+     * Display game result image
+     * @param bd
+     */
     private void setImage(Bundle bd)
     {
         boolean win = bd.getBoolean("WIN");
@@ -47,6 +62,9 @@ public class GameResultActivity extends AppCompatActivity {
         else _gameResultImage.setImageResource(R.drawable.loose_game);
     }
 
+    /***
+     * Activity components init
+     */
     private void initComponents()
     {
         _gameResultImage = findViewById(R.id.gameResultImageView);

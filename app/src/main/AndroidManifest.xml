@@ -31,10 +31,13 @@
         <activity
             android:name=".game.GameSettingsActivity"
             android:screenOrientation="portrait" />
-
         <service android:name=".services.BackgroundSound" />
-
-        <activity android:name=".game.GameResultActivity"></activity>
+        <activity
+            android:name=".game.GameResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AProposActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
