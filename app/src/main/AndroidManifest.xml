@@ -11,19 +11,30 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".main.LobbyActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menu.MenuActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".game.GameActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".historic.HistoricActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".game.GameSettingsActivity" android:screenOrientation="portrait"/>
-        <service android:name=".services.BackgroundSound"/>
+        <activity
+            android:name=".menu.MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".game.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".historic.HistoricActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".game.GameSettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".services.BackgroundSound" />
+
+        <activity android:name=".game.GameResultActivity"></activity>
     </application>
 
 </manifest>

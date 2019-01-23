@@ -2,10 +2,12 @@ package com.example.zanimos.tpmemory.game;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zanimos.tpmemory.R;
@@ -24,11 +26,15 @@ public class GameActivity extends AppCompatActivity {
     private SharedPreferencesManager _preferencesManager;
     private CardFragment[] _cardsSelected;
     private GridLayout _cardsGrid;
+    private TextView _chronoTextView;
 
+    private CountDownTimer _countDownTimer;
     private int _nbPairToPlay;
     private String _difficulty;
     private String _cocktail;
     private String _gameMode;
+    private int _timer;
+
 
     /***
      * onCreate activity event
@@ -45,10 +51,6 @@ public class GameActivity extends AppCompatActivity {
             _difficulty = bd.getString("DIFFICULTY");
             _cocktail = bd.getString("COCKTAIL");
             _gameMode = bd.getString("GAME_MODE");
-
-            setDifficulty(_difficulty);
-            setCocktail(_cocktail);
-            setGameMode(_gameMode);
         }
     }
 
@@ -63,6 +65,11 @@ public class GameActivity extends AppCompatActivity {
         // Get SharedPreferencesManager Instance
         _preferencesManager = SharedPreferencesManager.Instance(getApplicationContext());
         _preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
+
+        // Set Game parameters
+        setDifficulty(_difficulty);
+        setCocktail(_cocktail);
+        setGameMode(_gameMode);
     }
 
     /***
@@ -70,6 +77,7 @@ public class GameActivity extends AppCompatActivity {
      */
     private void initComponents()
     {
+        _chronoTextView = (TextView) findViewById(R.id.chronoTextView);
         _cardsGrid = (GridLayout) findViewById(R.id.cardsGrid);
         _cardsGrid.setAlignmentMode(GridLayout.ALIGN_MARGINS);
     }
@@ -87,18 +95,21 @@ public class GameActivity extends AppCompatActivity {
                 _cardsGrid.setColumnCount(3);
                 _cardsGrid.setRowCount(4);
                 _nbPairToPlay = 6;
+                _timer = 60000; // 1 min
                 break;
             case "Difficile":
                 // 16 cards
                 _cardsGrid.setColumnCount(4);
                 _cardsGrid.setRowCount(4);
                 _nbPairToPlay = 8;
+                _timer = 30000; // 30 scd
                 break;
             default:
                 // 12 cards
                 _cardsGrid.setColumnCount(4);
                 _cardsGrid.setRowCount(3);
                 _nbPairToPlay = 6;
+                _timer = 60000; // 1min
                 break;
         }
     }
@@ -132,10 +143,8 @@ public class GameActivity extends AppCompatActivity {
      */
     private void setGameMode(String gameMode)
     {
-        if(("Difficile").equals(gameMode))
-        {
-            // TODO : lancer service chrono
-        }
+        if(getString(R.string.atc).equals(gameMode)) startTimer();
+        else _chronoTextView.setEnabled(false);
     }
 
     /***
@@ -221,6 +230,37 @@ public class GameActivity extends AppCompatActivity {
         cards.add(cf);
     }
 
+
+    private void displayScore(){
+        int mins = _timer / 60000;
+        int scds = _timer % 60000 / 1000;
+
+        StringBuilder strTimer = new StringBuilder();
+        strTimer.append(0);
+        strTimer.append(mins);
+        strTimer.append(':');
+        if(scds < 10) strTimer.append(0);
+        strTimer.append(scds);
+
+        _chronoTextView.setText(strTimer.toString());
+    }
+
+    private void startTimer()
+    {
+        _countDownTimer = new CountDownTimer(_timer, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                _timer = (int) millisUntilFinished;
+                displayScore();
+            }
+
+            @Override
+            public void onFinish() {
+                finishGame(false);
+            }
+        }.start();
+    }
+
     /***
      * Compare method for selected cards
      * @param clickedCard : selectedCard
@@ -270,14 +310,20 @@ public class GameActivity extends AppCompatActivity {
      */
     private void finishGame(boolean win)
     {
-        Toast.makeText(this, "End Game!", Toast.LENGTH_SHORT).show();
+        Bundle bd = new Bundle();
         if(win)
         {
             _preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
+            bd.putBoolean("WIN", true);
+        }
+        else
+        {
+            bd.putBoolean("WIN", false);
         }
 
         // Back to Menu
-        Intent i = new Intent(this.getApplicationContext(), MenuActivity.class);
+        Intent i = new Intent(this.getApplicationContext(), GameResultActivity.class);
+        i.putExtras(bd);
         startActivity(i);
         finish();
     }
