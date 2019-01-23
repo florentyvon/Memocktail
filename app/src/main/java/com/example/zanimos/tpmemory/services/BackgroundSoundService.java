@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -11,13 +12,23 @@ import android.support.annotation.Nullable;
 import com.example.zanimos.tpmemory.R;
 
 public class BackgroundSoundService extends Service {
+
+    private BackgroundSoundServiceBinder binder = new BackgroundSoundServiceBinder();
     private MediaPlayer mMediaPlayer = null;
     private int _sound;
+    private boolean isOn;
+
+
+    public class BackgroundSoundServiceBinder extends Binder {
+        public BackgroundSoundService getService() {
+            return BackgroundSoundService.this;
+        }
+    }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
     }
 
     @Override
@@ -29,7 +40,9 @@ public class BackgroundSoundService extends Service {
             _soundS = extras.getString("sound");
             mMediaPlayer = MediaPlayer.create(this, getSound(_soundS));
             mMediaPlayer.setLooping(true);
+            mMediaPlayer.setVolume(20f, 20f);
             mMediaPlayer.start();
+            isOn = true;
         }
         return START_STICKY;
     }
@@ -38,6 +51,15 @@ public class BackgroundSoundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         mMediaPlayer.stop();
+    }
+
+    public boolean toggleVolume()
+    {
+        isOn = !isOn;
+        if(isOn) mMediaPlayer.setVolume(20f, 20f);
+        else mMediaPlayer.setVolume(20f, 20f);
+
+        return isOn;
     }
 
     private int getSound(String soundString){
