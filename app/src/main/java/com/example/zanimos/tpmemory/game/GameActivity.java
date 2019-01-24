@@ -19,6 +19,7 @@ import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
+import com.example.zanimos.tpmemory.services.SoundEffectsService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
         setCocktail(_cocktail);
         setGameMode(_gameMode);
 
-        startService(intent);
+        //startService(intent);
     }
 
     @Override
@@ -328,6 +329,7 @@ public class GameActivity extends AppCompatActivity {
         anim.setDuration(400);
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.start();
+        startService(new Intent(this, SoundEffectsService.class));
         clickedCard.setImageVisibility(true);
 
 

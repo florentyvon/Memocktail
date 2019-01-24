@@ -14,8 +14,7 @@ import com.example.zanimos.tpmemory.R;
 public class BackgroundSoundService extends Service {
 
     private BackgroundSoundServiceBinder binder = new BackgroundSoundServiceBinder();
-    private MediaPlayer mMediaPlayer = null;
-    private int _sound;
+    private MediaPlayer mMediaPlayer;
     private boolean isOn;
 
 

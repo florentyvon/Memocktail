@@ -31,13 +31,20 @@
         <activity
             android:name=".game.GameSettingsActivity"
             android:screenOrientation="portrait" />
+
         <service android:name=".services.BackgroundSoundService" />
+
         <activity
             android:name=".game.GameResultActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AProposActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".services.SoundEffectsService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
