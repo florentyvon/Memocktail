@@ -3,6 +3,7 @@ package com.example.zanimos.tpmemory.menu;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +20,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
 
     private Button buttonGame;
     private Button buttonHisto;
+    private Toolbar mTopToolbar;
 
     /***
      * onCreate activity event
@@ -26,9 +28,11 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
         initComponents();
+        setSupportActionBar(mTopToolbar);
     }
 
     /***
@@ -66,6 +70,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
     private void initComponents(){
         buttonGame = (Button) findViewById(R.id.button_game);
         buttonHisto = (Button) findViewById(R.id.button_histo);
+        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
     }
 
     /***

@@ -5,7 +5,8 @@
     android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.LobbyActivity">
+    tools:context=".main.LobbyActivity"
+    android:background="@drawable/backgroundlobby">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -56,6 +57,7 @@
         android:fontFamily="@font/bubblegum_sans"
         android:text="@string/welcomelobby"
         android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
