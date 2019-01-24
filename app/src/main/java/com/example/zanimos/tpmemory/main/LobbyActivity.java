@@ -68,6 +68,5 @@ public class LobbyActivity extends BaseActivity {
      */
     private void initComponents(){
         layout = (ConstraintLayout) findViewById(R.id.Layout);
-
     }
 }

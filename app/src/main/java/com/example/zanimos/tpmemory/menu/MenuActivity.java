@@ -44,18 +44,6 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
         bindEvents();
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        startService(new Intent(this, BackgroundSoundService.class));
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        stopService(new Intent(this, BackgroundSoundService.class));
-    }
-
     /***
      * Event binding method
      */
