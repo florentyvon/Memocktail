@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.zanimos.tpmemory.game.GameSettingsActivity;
 import com.example.zanimos.tpmemory.R;
@@ -18,8 +19,8 @@ import com.example.zanimos.tpmemory.services.BackgroundSoundService;
  */
 public class MenuActivity extends AppCompatActivity  implements View.OnClickListener {
 
-    private Button buttonGame;
-    private Button buttonHisto;
+    private ImageButton buttonGame;
+    private ImageButton buttonHisto;
     private Toolbar mTopToolbar;
 
     /***
@@ -60,7 +61,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
      * Event binding method
      */
     private void bindEvents(){
-        buttonGame.setOnClickListener(this);
+        //buttonGame.setOnClickListener(this);
         buttonHisto.setOnClickListener(this);
     }
 
@@ -68,8 +69,8 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
      * Activity components init
      */
     private void initComponents(){
-        buttonGame = (Button) findViewById(R.id.button_game);
-        buttonHisto = (Button) findViewById(R.id.button_histo);
+        //buttonGame = (ImageButton) findViewById(R.id.button_game);
+        buttonHisto = (ImageButton) findViewById(R.id.button_hist);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
     }
 
@@ -86,7 +87,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
                 intent = new Intent(getApplicationContext(), GameSettingsActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.button_histo:
+            case R.id.button_hist:
                 intent = new Intent(getApplicationContext(), HistoricActivity.class);
                 startActivity(intent);
                 break;

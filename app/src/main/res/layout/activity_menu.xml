@@ -17,17 +17,17 @@
         app:theme="@style/ToolBarStyle"
         android:background="@color/colorPrimaryDark" />
 
-    <Button
-        android:id="@+id/button_game"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/button_hist"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
         android:layout_marginTop="176dp"
-        android:background="@android:color/holo_green_dark"
-        android:text="@string/jeu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#0000"
+        app:srcCompat="@drawable/histo" />
 
     <Button
         android:id="@+id/button_histo"
