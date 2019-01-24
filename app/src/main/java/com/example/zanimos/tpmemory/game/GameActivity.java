@@ -112,7 +112,7 @@ public class GameActivity extends AppCompatActivity {
                 _cardsGrid.setColumnCount(3);
                 _cardsGrid.setRowCount(4);
                 _nbPairToPlay = 6;
-                _timer = 60000; // 1 min
+                _timer = 12000; // 1 min
                 break;
             case "Difficile":
                 // 16 cards
@@ -264,6 +264,8 @@ public class GameActivity extends AppCompatActivity {
         int mins = _timer / 60000;
         int scds = _timer % 60000 / 1000;
 
+
+        if(_timer < 10000) _chronoTextView.setTextColor(R.color.holo_red_light);
         StringBuilder strTimer = new StringBuilder();
         strTimer.append(0);
         strTimer.append(mins);

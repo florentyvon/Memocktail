@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundmenu"
-    tools:context=".menu.MenuActivity"
-    tools:layout_editor_absoluteY="81dp">
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -19,30 +18,28 @@
 
     <ImageButton
         android:id="@+id/button_game"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="176dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/button_histo"
         android:background="#0000"
-        app:srcCompat="@drawable/play" />
+        android:src="@drawable/play" />
 
     <ImageButton
         android:id="@+id/button_histo"
-        android:layout_width="191dp"
-        android:layout_height="85dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#0000"
         android:text="@string/historique"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_game"
-        app:layout_constraintVertical_bias="0.127"
-        app:srcCompat="@drawable/histo" />
+        android:src="@drawable/histo" />
+
 
 </android.support.constraint.ConstraintLayout>

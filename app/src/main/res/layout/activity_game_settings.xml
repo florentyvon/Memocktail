@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".game.GameSettingsActivity">
 
     <Spinner
@@ -108,6 +109,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="#0000"
-        app:srcCompat="@drawable/play_game_button" />
+        app:srcCompat="@drawable/play" />
 
 </android.support.constraint.ConstraintLayout>
