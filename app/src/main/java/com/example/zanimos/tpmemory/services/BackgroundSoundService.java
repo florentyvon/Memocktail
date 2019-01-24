@@ -13,20 +13,12 @@ import com.example.zanimos.tpmemory.R;
 
 public class BackgroundSoundService extends Service {
 
-    private BackgroundSoundServiceBinder binder = new BackgroundSoundServiceBinder();
     private MediaPlayer mMediaPlayer;
-
-
-    public class BackgroundSoundServiceBinder extends Binder {
-        public BackgroundSoundService getService() {
-            return BackgroundSoundService.this;
-        }
-    }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
+        return null;
     }
 
     @Override
