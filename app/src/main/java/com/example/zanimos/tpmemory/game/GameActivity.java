@@ -34,8 +34,6 @@ public class GameActivity extends AppCompatActivity {
     private CardFragment[] _cardsSelected;
     private GridLayout _cardsGrid;
     private TextView _chronoTextView;
-
-    private CountDownTimer _countDownTimer;
     private int _nbPairToPlay;
     private String _difficulty;
     private String _cocktail;
@@ -43,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
     private int _timer;
     private Intent intent;
     private boolean _found;
-
+    private boolean _gameFinished;
 
     /***
      * onCreate activity event
@@ -61,6 +59,8 @@ public class GameActivity extends AppCompatActivity {
             _cocktail = bd.getString("COCKTAIL");
             _gameMode = bd.getString("GAME_MODE");
         }
+
+        _gameFinished = false;
     }
 
     /***
@@ -112,7 +112,7 @@ public class GameActivity extends AppCompatActivity {
                 _cardsGrid.setColumnCount(3);
                 _cardsGrid.setRowCount(4);
                 _nbPairToPlay = 6;
-                _timer = 12000; // 1 min
+                _timer = 60000; // 1 min
                 break;
             case "Difficile":
                 // 16 cards
@@ -264,8 +264,9 @@ public class GameActivity extends AppCompatActivity {
         int mins = _timer / 60000;
         int scds = _timer % 60000 / 1000;
 
+        if(_timer < 10000)
+            _chronoTextView.setTextColor(getResources().getColor(R.color.holo_red_light));
 
-        if(_timer < 10000) _chronoTextView.setTextColor(R.color.holo_red_light);
         StringBuilder strTimer = new StringBuilder();
         strTimer.append(0);
         strTimer.append(mins);
@@ -281,7 +282,8 @@ public class GameActivity extends AppCompatActivity {
      */
     private void startTimer()
     {
-        _countDownTimer = new CountDownTimer(_timer, 1000) {
+        // Threaded Timer
+        CountDownTimer countDownTimer = new CountDownTimer(_timer, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 _timer = (int) millisUntilFinished;
@@ -290,7 +292,7 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                finishGame(false);
+                if(!_gameFinished) finishGame(false);
             }
         }.start();
     }
@@ -367,6 +369,7 @@ public class GameActivity extends AppCompatActivity {
      */
     private void finishGame(boolean win)
     {
+        _gameFinished = true;
         Bundle bd = new Bundle();
         if(win)
         {

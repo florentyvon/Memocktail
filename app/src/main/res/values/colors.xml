@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="holo_green_light">#00BB00</color>
-    <color name="holo_red_light">#FF0000</color>
+    <color name="holo_red_light">#FFFF4444</color>
 </resources>
