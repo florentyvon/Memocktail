@@ -8,15 +8,6 @@
     tools:context=".main.LobbyActivity"
     android:background="@drawable/backgroundlobby">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        style="@style/HeaderBar"
-        android:elevation="4dp"
-        app:theme="@style/ToolBarStyle"
-        android:background="@color/colorPrimaryDark" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
@@ -51,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 

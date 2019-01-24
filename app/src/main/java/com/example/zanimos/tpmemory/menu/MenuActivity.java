@@ -11,17 +11,17 @@ import android.widget.ImageButton;
 import com.example.zanimos.tpmemory.game.GameSettingsActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.historic.HistoricActivity;
+import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 /***
  * Menu activity
  * @author Florent Yvon, Julien Raillard, Mickael Meneux
  */
-public class MenuActivity extends AppCompatActivity  implements View.OnClickListener {
+public class MenuActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageButton buttonGame;
     private ImageButton buttonHisto;
-    private Toolbar mTopToolbar;
 
     /***
      * onCreate activity event
@@ -33,7 +33,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
         initComponents();
-        setSupportActionBar(mTopToolbar);
     }
 
     /***
@@ -71,7 +70,6 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
     private void initComponents(){
         buttonGame = (ImageButton) findViewById(R.id.button_game);
         buttonHisto = (ImageButton) findViewById(R.id.button_histo);
-        mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
     }
 
     /***

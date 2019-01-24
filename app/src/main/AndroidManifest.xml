@@ -11,8 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".main.LobbyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +20,7 @@
         </activity>
         <activity
             android:name=".menu.MenuActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".game.GameActivity"
             android:screenOrientation="portrait" />
@@ -45,7 +43,9 @@
         <service
             android:name=".services.SoundEffectsService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".infrastructure.BaseActivity"></activity>
     </application>
 
 </manifest>
