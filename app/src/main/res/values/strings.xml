@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mémocktail</string>
     <string name="descriptionlobby">Pour apprendre à faire des cocktails savoureux!</string>
-    <string name="welcomelobby">Bienvenue dans le monde de Mocktail</string>
+    <string name="welcomelobby">Bienvenue dans le\nmonde de Mocktail</string>
     <string name="jeu">Jouer</string>
     <string name="historique">Historique</string>
     <string name="descriptionducocktail">cocktaildescription</string>
