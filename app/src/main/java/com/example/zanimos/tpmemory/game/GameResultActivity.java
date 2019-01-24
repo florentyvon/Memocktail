@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.zanimos.tpmemory.R;
@@ -17,7 +18,7 @@ import com.example.zanimos.tpmemory.menu.MenuActivity;
 public class GameResultActivity extends AppCompatActivity {
 
     private ImageView _gameResultImage;
-    private Button _backToMenuButton;
+    private ImageButton _backToMenuButton;
 
     /***
      * onCreate activity event
