@@ -24,6 +24,7 @@ public class SoundEffectsService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if(isOn == true){
             mMediaPlayer = MediaPlayer.create(this, R.raw.card);
             mMediaPlayer.start();
             mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -32,7 +33,7 @@ public class SoundEffectsService extends Service {
                     stopSelf();
                 }
             });
-            isOn = true;
+        }
         return START_STICKY;
     }
 
@@ -42,12 +43,11 @@ public class SoundEffectsService extends Service {
         mMediaPlayer.stop();
     }
 
-    /*public boolean toggleVolume()
-    {
-        isOn = !isOn;
-        if(isOn) mMediaPlayer.setVolume(20f, 20f);
-        else mMediaPlayer.setVolume(20f, 20f);
+    public void disable(){
+        isOn = false;
+    }
 
-        return isOn;
-    }*/
+    public void enable(){
+        isOn = true;
+    }
 }

@@ -80,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
         setCocktail(_cocktail);
         setGameMode(_gameMode);
 
-        //startService(intent);
+        startService(intent);
     }
 
     @Override

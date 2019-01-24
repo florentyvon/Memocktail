@@ -47,8 +47,20 @@ public class GameSettingsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
+    protected void onResume(){
+        super.onResume();
+        startService(new Intent(this, BackgroundSoundService.class));
+    }
+
+    @Override
+    protected void onPause(){
         super.onPause();
+        stopService(new Intent(this, BackgroundSoundService.class));
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
         stopService(new Intent(this, BackgroundSoundService.class));
     }
 

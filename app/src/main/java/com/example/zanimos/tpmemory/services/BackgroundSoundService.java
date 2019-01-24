@@ -15,7 +15,6 @@ public class BackgroundSoundService extends Service {
 
     private BackgroundSoundServiceBinder binder = new BackgroundSoundServiceBinder();
     private MediaPlayer mMediaPlayer;
-    private boolean isOn;
 
 
     public class BackgroundSoundServiceBinder extends Binder {
@@ -39,9 +38,7 @@ public class BackgroundSoundService extends Service {
             _soundS = extras.getString("sound");
             mMediaPlayer = MediaPlayer.create(this, getSound(_soundS));
             mMediaPlayer.setLooping(true);
-            mMediaPlayer.setVolume(20f, 20f);
             mMediaPlayer.start();
-            isOn = true;
         }
         return START_STICKY;
     }
@@ -49,16 +46,7 @@ public class BackgroundSoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMediaPlayer.stop();
-    }
-
-    public boolean toggleVolume()
-    {
-        isOn = !isOn;
-        if(isOn) mMediaPlayer.setVolume(20f, 20f);
-        else mMediaPlayer.setVolume(20f, 20f);
-
-        return isOn;
+        if(mMediaPlayer != null) mMediaPlayer.stop();
     }
 
     private int getSound(String soundString){

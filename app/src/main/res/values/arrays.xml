@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="volumes">
+        <item>Musique de fond</item>
+        <item>Effets sonores</item>
+    </string-array>
+</resources>
