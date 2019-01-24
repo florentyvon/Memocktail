@@ -61,7 +61,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
      * Event binding method
      */
     private void bindEvents(){
-        //buttonGame.setOnClickListener(this);
+        buttonGame.setOnClickListener(this);
         buttonHisto.setOnClickListener(this);
     }
 
@@ -69,8 +69,8 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
      * Activity components init
      */
     private void initComponents(){
-        //buttonGame = (ImageButton) findViewById(R.id.button_game);
-        buttonHisto = (ImageButton) findViewById(R.id.button_hist);
+        buttonGame = (ImageButton) findViewById(R.id.button_game);
+        buttonHisto = (ImageButton) findViewById(R.id.button_histo);
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
     }
 
@@ -87,7 +87,7 @@ public class MenuActivity extends AppCompatActivity  implements View.OnClickList
                 intent = new Intent(getApplicationContext(), GameSettingsActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.button_hist:
+            case R.id.button_histo:
                 intent = new Intent(getApplicationContext(), HistoricActivity.class);
                 startActivity(intent);
                 break;

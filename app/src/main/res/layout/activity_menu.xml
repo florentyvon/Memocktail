@@ -18,7 +18,7 @@
         android:background="@color/colorPrimaryDark" />
 
     <ImageButton
-        android:id="@+id/button_hist"
+        android:id="@+id/button_game"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_marginTop="176dp"
@@ -27,12 +27,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#0000"
-        app:srcCompat="@drawable/histo" />
+        app:srcCompat="@drawable/play" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_histo"
         android:layout_width="191dp"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/holo_blue_dark"
@@ -42,6 +42,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_game"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.127"
+        app:srcCompat="@drawable/histo" />
 
 </android.support.constraint.ConstraintLayout>
