@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
@@ -28,7 +29,7 @@ import java.util.Collections;
  * Main game activity
  * @author Florent Yvon, Julien Raillard, Mickael Meneux
  */
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends BaseActivity {
 
     private SharedPreferencesManager _preferencesManager;
     private CardFragment[] _cardsSelected;
@@ -39,9 +40,9 @@ public class GameActivity extends AppCompatActivity {
     private String _cocktail;
     private String _gameMode;
     private int _timer;
-    private Intent intent;
     private boolean _found;
     private boolean _gameFinished;
+    private Intent i;
 
     /***
      * onCreate activity event
@@ -71,22 +72,16 @@ public class GameActivity extends AppCompatActivity {
         super.onStart();
         _cardsSelected = new CardFragment[2];
 
-        // Get SharedPreferencesManager Instance
-        _preferencesManager = SharedPreferencesManager.Instance(getApplicationContext());
-        _preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
+        super.preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
+
+        // check if sound is already on to stop it and then play another one in setGameMode method
+        if(_soundIsOn[0])
+            stopService(new Intent(this, BackgroundSoundService.class));
 
         // Set Game parameters
         setDifficulty(_difficulty);
         setCocktail(_cocktail);
         setGameMode(_gameMode);
-
-        startService(intent);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        stopService(new Intent(this, BackgroundSoundService.class));
     }
 
     /***
@@ -160,16 +155,29 @@ public class GameActivity extends AppCompatActivity {
      */
     private void setGameMode(String gameMode)
     {
+        // Initiate background sound service
+        i = new Intent(this, BackgroundSoundService.class);
+
         if(getString(R.string.atc).equals(gameMode)){
+            // Set sound to play
+            i.putExtra("sound","countdown");
+            //Start the mode timer
             startTimer();
-            intent = new Intent(this, BackgroundSoundService.class);
-            intent.putExtra("sound","countdown");
         }
         else{
             _chronoTextView.setVisibility(View.GONE);
-            intent = new Intent(this, BackgroundSoundService.class);
-            intent.putExtra("sound","game");
+            // Set sound to play
+            i.putExtra("sound","game");
             _cardsGrid.setPadding(0,100,0,100);
+        }
+
+        // Check settings before start sound
+        if(super._soundIsOn[0]){
+            // Start playing sound
+            startService(i);
+        } else{
+            //
+            i = null;
         }
     }
 
@@ -256,7 +264,6 @@ public class GameActivity extends AppCompatActivity {
         cards.add(cf);
     }
 
-
     /***
      * Chrono timer display
      */
@@ -328,15 +335,15 @@ public class GameActivity extends AppCompatActivity {
             _cardsSelected[1] = null;
         }
 
-        //rotate card
+        // rotate card
         ObjectAnimator anim = ObjectAnimator.ofFloat(clickedCard.getView(), "rotationY", -90f,0f);
         anim.setDuration(400);
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.start();
-        startService(new Intent(this, SoundEffectsService.class));
+
+        // check sound setting before start sound effect
+        if(super._soundIsOn[1]) startService(new Intent(this, SoundEffectsService.class));
         clickedCard.setImageVisibility(true);
-
-
 
         if(_cardsSelected[0] == null)
         {
@@ -373,7 +380,7 @@ public class GameActivity extends AppCompatActivity {
         Bundle bd = new Bundle();
         if(win)
         {
-            _preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
+            super.preferencesManager.incrementTokenValue("victory",_difficulty,_cocktail,_gameMode);
             bd.putBoolean("WIN", true);
         }
         else
@@ -385,6 +392,8 @@ public class GameActivity extends AppCompatActivity {
         Intent i = new Intent(this.getApplicationContext(), GameResultActivity.class);
         i.putExtras(bd);
         startActivity(i);
+        // Stop safely backgroundservice
+        stopService(i);
         finish();
     }
 }

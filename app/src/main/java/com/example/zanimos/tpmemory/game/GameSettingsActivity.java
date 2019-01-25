@@ -11,13 +11,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 /***
  * Game settings activity
  * @author Florent Yvon, Julien Raillard, Mickael Meneux
  */
-public class GameSettingsActivity extends AppCompatActivity {
+public class GameSettingsActivity extends BaseActivity {
 
     private Spinner _spinnerCocktails;
     private Spinner _spinnerDifficulty;
@@ -44,24 +45,6 @@ public class GameSettingsActivity extends AppCompatActivity {
         super.onStart();
         setSpinners();
         bindEvents();
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        startService(new Intent(this, BackgroundSoundService.class));
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        stopService(new Intent(this, BackgroundSoundService.class));
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        stopService(new Intent(this, BackgroundSoundService.class));
     }
 
     /***

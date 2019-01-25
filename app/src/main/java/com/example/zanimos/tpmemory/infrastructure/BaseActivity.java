@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.zanimos.tpmemory.AProposActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
+import com.example.zanimos.tpmemory.services.SoundEffectsService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,13 +19,21 @@ import java.util.Arrays;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private Menu _menu;
-    private boolean[] _soundIsOn = new boolean[2];
-    private ArrayList<Integer> mSelectedItems;
+    //private ArrayList<Integer> mSelectedItems;
+    /*
+     _soundIsOn[0] => background sound
+     _soundIsOn[0] => sound effect
+      */
+    protected boolean[] _soundIsOn = new boolean[2];
+    protected SharedPreferencesManager preferencesManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Arrays.fill(_soundIsOn, true);
+        preferencesManager = SharedPreferencesManager.Instance(getApplicationContext());
+        _soundIsOn[0] = preferencesManager.readSettingTokenValue("volume-background");
+        _soundIsOn[1] = preferencesManager.readSettingTokenValue("volume-sound_effects");
     }
 
     /***
@@ -47,32 +56,28 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.volumeON:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 AlertDialog dialog;
-                mSelectedItems = new ArrayList();
+                // Set up sound set up stored values
+                _soundIsOn[0] = preferencesManager.readSettingTokenValue("volume-background");
+                _soundIsOn[1] = preferencesManager.readSettingTokenValue("volume-sound_effects");
+
                 builder.setTitle("Modifier Volume")
                         .setMultiChoiceItems(R.array.volumes, _soundIsOn,
                                 new DialogInterface.OnMultiChoiceClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which,
                                                         boolean isChecked) {
-                                        if (isChecked) {
-                                            // If the user checked the item, add it to the selected items
-                                            mSelectedItems.add(which);
-                                        } else if (mSelectedItems.contains(which)) {
-                                            // Else, if the item is already in the array, remove it
-                                            mSelectedItems.remove(Integer.valueOf(which));
-                                        }
+                                        _soundIsOn[which] = isChecked;
                                     }
                                 })
                         // Set the action buttons
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                setVolumes(mSelectedItems);
+                                setVolumes();
                             }
                         })
                         .setNegativeButton("ANNULER", new DialogInterface.OnClickListener() {
@@ -88,7 +93,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Intent i = new Intent(this, AProposActivity.class);
                 startActivity(i);
                 break;
-            default :
+            default:
                 break;
         }
 
@@ -96,35 +101,29 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
-        super.onResume();
-        if(_soundIsOn[0]) {
-            Intent intent = new Intent(this, BackgroundSoundService.class);
-            intent.putExtra("sound", "lobby");
-            startService(intent);
-        }
-    }
-
-    @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         stopService(new Intent(this, BackgroundSoundService.class));
     }
 
-    private void setVolumes(ArrayList<Integer> volumes){
-        if(volumes.contains(0)){
-            _soundIsOn[0] = true;
+    private void setVolumes() {
+        // Set background sound
+        if (_soundIsOn[0]) {
+            preferencesManager.writeSettingTokenValue("volume-background", true);
             Intent intent = new Intent(this, BackgroundSoundService.class);
             intent.putExtra("sound", "lobby");
             startService(intent);
-        } else if(!volumes.contains(0)){
-            _soundIsOn[0] = false;
+        } else {
+            preferencesManager.writeSettingTokenValue("volume-background", false);
             stopService(new Intent(this, BackgroundSoundService.class));
         }
-        if(volumes.contains(1)){
-            _soundIsOn[1] = true;
-        } else if(!volumes.contains(1)) {
-            _soundIsOn[1] = false;
+
+        // Set sound effects
+        if (_soundIsOn[1]) {
+            preferencesManager.writeSettingTokenValue("volume-sound_effects", true);
+        } else {
+            preferencesManager.writeSettingTokenValue("volume-background", false);
+            stopService(new Intent(this, BackgroundSoundService.class));
         }
     }
 }

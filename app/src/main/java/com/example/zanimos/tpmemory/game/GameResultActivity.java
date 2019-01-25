@@ -9,13 +9,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
+import com.example.zanimos.tpmemory.services.BackgroundSoundService;
+import com.example.zanimos.tpmemory.services.SoundEffectsService;
 
 /***
  * Game result activity
  * @author Florent Yvon, Julien Raillard, Mickael Meneux
  */
-public class GameResultActivity extends AppCompatActivity {
+public class GameResultActivity extends BaseActivity {
 
     private ImageView _gameResultImage;
     private ImageButton _backToMenuButton;
@@ -38,14 +41,21 @@ public class GameResultActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        // Set image depending victory
         Bundle bd = getIntent().getExtras();
         setImage(bd);
 
+        // Bind event
         _backToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), MenuActivity.class);
-                startActivity(i);
+                Intent iView = new Intent(v.getContext(), MenuActivity.class);
+                // Restart sound in menu if sound on
+                if(_soundIsOn[0])
+                    iView.putExtra("SOUND_RESTART", true);
+
+                stopService(new Intent(v.getContext(), SoundEffectsService.class));
+                startActivity(iView);
                 finish();
             }
         });
@@ -58,9 +68,21 @@ public class GameResultActivity extends AppCompatActivity {
     private void setImage(Bundle bd)
     {
         boolean win = bd.getBoolean("WIN");
+        Intent intent = new Intent(this, SoundEffectsService.class);
 
-        if(win) _gameResultImage.setImageResource(R.drawable.win_game);
-        else _gameResultImage.setImageResource(R.drawable.loose_game);
+        if(win) {
+            _gameResultImage.setImageResource(R.drawable.win_game);
+            intent.putExtra("sound", "win");
+        }
+        else {
+            _gameResultImage.setImageResource(R.drawable.loose_game);
+            intent.putExtra("sound", "loose");
+        }
+
+        if(_soundIsOn[1])
+            startService(intent);
+        else
+            intent = null;
     }
 
     /***

@@ -44,8 +44,6 @@
             android:name=".services.SoundEffectsService"
             android:enabled="true"
             android:exported="true" />
-
-        <activity android:name=".infrastructure.BaseActivity"></activity>
     </application>
 
 </manifest>

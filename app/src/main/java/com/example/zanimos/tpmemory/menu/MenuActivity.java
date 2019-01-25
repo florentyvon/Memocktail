@@ -33,6 +33,14 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
         initComponents();
+
+        Intent i = getIntent();
+        // Restart lobby sound if just finished a game
+        if(i.getBooleanExtra("SOUND_RESTART", false)){
+            Intent intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound", "lobby");
+            startService(intent);
+        }
     }
 
     /***

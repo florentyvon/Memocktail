@@ -41,6 +41,12 @@ public class LobbyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
 
+        if(super._soundIsOn[0]) {
+            Intent intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound", "lobby");
+            startService(intent);
+        }
+
         initComponents();
     }
 

@@ -24,4 +24,8 @@
         jouant au jeux du mémory.\n\n\n\n\n
         Réalisé par : \nFlorent YVON\nMickaël MENEUX\nJulien RAILLARD
     </string>
+    <string-array name="volumes">
+        <item>Musique de fond</item>
+        <item>Effets sonores</item>
+    </string-array>
 </resources>

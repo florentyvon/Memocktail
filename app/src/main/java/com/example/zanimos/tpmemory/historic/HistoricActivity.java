@@ -6,12 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.zanimos.tpmemory.R;
+import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 
 /***
  * Historic activity
  * @author Florent Yvon, Julien Raillard, Mickael Meneux
  */
-public class HistoricActivity extends AppCompatActivity {
+public class HistoricActivity extends BaseActivity {
 
     private ViewPager viewPager = null;
     private TabLayout tabLayout = null;

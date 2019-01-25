@@ -49,6 +49,12 @@ public class BackgroundSoundService extends Service {
                 return R.raw.game;
             case "countdown":
                 return R.raw.countdown;
+                /*
+            case "win":
+                return R.raw.win;
+            case "loose":
+                return R.raw.loose;
+                */
             default:
                 return R.raw.background_sound;
         }
