@@ -98,7 +98,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onResume(){
-        overridePendingTransition(R.anim.slide_forward,R.anim.slide_back);
         super.onResume();
         if(_soundIsOn[0]) {
             Intent intent = new Intent(this, BackgroundSoundService.class);
