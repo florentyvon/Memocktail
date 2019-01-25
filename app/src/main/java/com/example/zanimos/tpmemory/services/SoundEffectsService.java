@@ -11,7 +11,7 @@ import com.example.zanimos.tpmemory.R;
 public class SoundEffectsService extends Service {
 
     private MediaPlayer mMediaPlayer;
-    private boolean isOn;
+    private boolean isOn = true;
 
     public SoundEffectsService() {
     }

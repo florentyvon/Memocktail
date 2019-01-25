@@ -42,9 +42,9 @@ public class SharedPreferencesManager {
      * @param gameMode : game mode
      */
     public void incrementTokenValue(String tokenType,
-                                  String difficulty,
-                                  String cocktail,
-                                  String gameMode)
+                                    String difficulty,
+                                    String cocktail,
+                                    String gameMode)
     {
         SharedPreferences.Editor editor = _prefs.edit();
         // Get token needed
@@ -66,11 +66,10 @@ public class SharedPreferencesManager {
      * @return String : token value
      */
     public String readTokenValue(String tokenType,
-                                  String difficulty,
-                                  String cocktail,
-                                  String gameMode)
+                                 String difficulty,
+                                 String cocktail,
+                                 String gameMode)
     {
-        SharedPreferences.Editor editor = _prefs.edit();
         String token = getPeferencesToken(tokenType, difficulty, cocktail, gameMode);
 
         return  String.valueOf(_prefs.getInt(token, 0));
@@ -85,9 +84,9 @@ public class SharedPreferencesManager {
      * @return String : token
      */
     private String getPeferencesToken(String tokenType,
-                                             String difficulty,
-                                             String cocktail,
-                                             String gameMode)
+                                      String difficulty,
+                                      String cocktail,
+                                      String gameMode)
     {
         // token pattern : victory/played-cocktail-gamemode-difficulty
         StringBuilder stringBuilder = new StringBuilder();
@@ -96,5 +95,37 @@ public class SharedPreferencesManager {
         stringBuilder.append(difficulty.toLowerCase().replace(" ", "_"));
 
         return stringBuilder.insert(0, tokenType+"-").toString();
+    }
+
+    public boolean readSettingTokenValue(String settingToken){
+        boolean tokenValue;
+        SharedPreferences.Editor editor = _prefs.edit();
+
+        switch(settingToken){
+            case "volume-background":
+                tokenValue = _prefs.getBoolean("volume-background", true);
+                break;
+            case "volume-sound_effects":
+                tokenValue = _prefs.getBoolean("volume-sound_effects", true);
+                break;
+            default:
+                tokenValue = false;
+        }
+        return tokenValue;
+    }
+
+    public void writeSettingTokenValue(String settingToken, boolean tokenValue){
+        SharedPreferences.Editor editor = _prefs.edit();
+        switch (settingToken){
+            case "volume-background":
+                editor.putBoolean("volume-background",tokenValue);
+                break;
+            case "volume-sound_effects":
+                editor.putBoolean("volume-sound_effects", tokenValue);
+                break;
+            default:
+                break;
+        }
+        editor.apply();
     }
 }
