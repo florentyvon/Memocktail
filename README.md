@@ -21,12 +21,12 @@ Intermediate difficulty could be set and easy difficulty made easier.
 ## Demo
 ![Home](/demo/home.png)
 ![Menu](/demo/menu.png)
-![GameB](/demo/settings.png)
-![GameB](/demo/gameb.png)
+![Settings](/demo/settings.png)
 ![GameW](/demo/gamew.png)
 ![GameA](/demo/gamea.png)
 ![Histo](/demo/histo.png)
 
 ##Installation
+
 ###Prerequesites
 Android API 28 & Android Studio installed
