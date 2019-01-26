@@ -26,7 +26,7 @@ Intermediate difficulty could be set and easy difficulty made easier.
 ![GameA](/demo/gamea.png)
 ![Histo](/demo/histo.png)
 
-##Installation
+## Installation
 
-###Prerequesites
+### Prerequesites
 Android API 28 & Android Studio installed
