@@ -54,7 +54,7 @@ public class GameResultActivity extends BaseActivity {
                 if(_soundIsOn[0])
                     iView.putExtra("SOUND_RESTART", true);
 
-                stopService(new Intent(v.getContext(), SoundEffectsService.class));
+                stopService(new Intent(v.getContext(), BackgroundSoundService.class));
                 startActivity(iView);
                 finish();
             }
@@ -68,7 +68,7 @@ public class GameResultActivity extends BaseActivity {
     private void setImage(Bundle bd)
     {
         boolean win = bd.getBoolean("WIN");
-        Intent intent = new Intent(this, SoundEffectsService.class);
+        Intent intent = new Intent(this, BackgroundSoundService.class);
 
         if(win) {
             _gameResultImage.setImageResource(R.drawable.win_game);
@@ -78,8 +78,7 @@ public class GameResultActivity extends BaseActivity {
             _gameResultImage.setImageResource(R.drawable.loose_game);
             intent.putExtra("sound", "loose");
         }
-
-        if(_soundIsOn[1])
+        if(_soundIsOn[0])
             startService(intent);
         else
             intent = null;

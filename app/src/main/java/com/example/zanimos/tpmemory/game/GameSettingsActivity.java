@@ -98,6 +98,10 @@ public class GameSettingsActivity extends BaseActivity {
                 bd.putString("GAME_MODE", gameModeSelected);
                 bd.putString("DIFFICULTY", difficultySelected);
 
+                // check if sound is already on and stop it and then play another one in setGameMode method
+                if(_soundIsOn[0])
+                    stopService(new Intent(getApplicationContext(), BackgroundSoundService.class));
+
                 // Start Game Activity with parameters
                 Intent i = new Intent(getApplicationContext(), GameActivity.class);
                 i.putExtras(bd);

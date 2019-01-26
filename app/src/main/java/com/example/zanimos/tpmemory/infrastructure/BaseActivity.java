@@ -26,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
       */
     protected boolean[] _soundIsOn = new boolean[2];
     protected SharedPreferencesManager preferencesManager;
+    protected String _song = "lobby";
 
 
     @Override
@@ -111,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (_soundIsOn[0]) {
             preferencesManager.writeSettingTokenValue("volume-background", true);
             Intent intent = new Intent(this, BackgroundSoundService.class);
-            intent.putExtra("sound", "lobby");
+            intent.putExtra("sound", _song);
             startService(intent);
         } else {
             preferencesManager.writeSettingTokenValue("volume-background", false);
@@ -122,8 +123,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (_soundIsOn[1]) {
             preferencesManager.writeSettingTokenValue("volume-sound_effects", true);
         } else {
-            preferencesManager.writeSettingTokenValue("volume-background", false);
-            stopService(new Intent(this, BackgroundSoundService.class));
+            preferencesManager.writeSettingTokenValue("volume-sound_effects", false);
         }
     }
 }

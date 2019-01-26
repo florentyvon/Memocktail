@@ -71,12 +71,7 @@ public class GameActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
         _cardsSelected = new CardFragment[2];
-
         super.preferencesManager.incrementTokenValue("played",_difficulty,_cocktail,_gameMode);
-
-        // check if sound is already on to stop it and then play another one in setGameMode method
-        if(_soundIsOn[0])
-            stopService(new Intent(this, BackgroundSoundService.class));
 
         // Set Game parameters
         setDifficulty(_difficulty);
@@ -159,12 +154,14 @@ public class GameActivity extends BaseActivity {
         i = new Intent(this, BackgroundSoundService.class);
 
         if(getString(R.string.atc).equals(gameMode)){
+            super._song = "countdown";
             // Set sound to play
             i.putExtra("sound","countdown");
             //Start the mode timer
             startTimer();
         }
         else{
+            super._song = "game";
             _chronoTextView.setVisibility(View.GONE);
             // Set sound to play
             i.putExtra("sound","game");
@@ -388,12 +385,12 @@ public class GameActivity extends BaseActivity {
             bd.putBoolean("WIN", false);
         }
 
-        // Back to Menu
+        // Go to result scene
         Intent i = new Intent(this.getApplicationContext(), GameResultActivity.class);
         i.putExtras(bd);
         startActivity(i);
         // Stop safely backgroundservice
-        stopService(i);
+        stopService(new Intent(this, BackgroundSoundService.class));
         finish();
     }
 }

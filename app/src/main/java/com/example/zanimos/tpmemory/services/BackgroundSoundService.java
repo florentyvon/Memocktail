@@ -28,9 +28,12 @@ public class BackgroundSoundService extends Service {
         else {
             String _soundS;
             _soundS = extras.getString("sound");
-            mMediaPlayer = MediaPlayer.create(this, getSound(_soundS));
-            mMediaPlayer.setLooping(true);
-            mMediaPlayer.start();
+            System.out.println("mediaplayer : "+mMediaPlayer);
+            if(mMediaPlayer == null){
+                mMediaPlayer = MediaPlayer.create(this, getSound(_soundS));
+                mMediaPlayer.setLooping(true);
+                mMediaPlayer.start();
+            }
         }
         return START_STICKY;
     }
@@ -49,12 +52,10 @@ public class BackgroundSoundService extends Service {
                 return R.raw.game;
             case "countdown":
                 return R.raw.countdown;
-                /*
             case "win":
                 return R.raw.win;
             case "loose":
                 return R.raw.loose;
-                */
             default:
                 return R.raw.background_sound;
         }

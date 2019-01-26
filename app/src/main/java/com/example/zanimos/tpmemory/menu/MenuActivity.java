@@ -34,13 +34,25 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         initComponents();
 
-        Intent i = getIntent();
+        /*Intent i = getIntent();
         // Restart lobby sound if just finished a game
         if(i.getBooleanExtra("SOUND_RESTART", false)){
             Intent intent = new Intent(this, BackgroundSoundService.class);
             intent.putExtra("sound", "lobby");
             startService(intent);
-        }
+        }*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*Intent i = getIntent();
+        // Restart lobby sound if just finished a game
+        if(i.getBooleanExtra("SOUND_RESTART", false)) {
+            Intent intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound", "lobby");
+            startService(intent);
+        }*/
     }
 
     /***
@@ -50,6 +62,13 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
     protected void onStart() {
         super.onStart();
         bindEvents();
+        Intent i = getIntent();
+        // Restart lobby sound if just finished a game
+        if(i.getBooleanExtra("SOUND_RESTART", false)){
+            Intent intent = new Intent(this, BackgroundSoundService.class);
+            intent.putExtra("sound", "lobby");
+            startService(intent);
+        }
     }
 
     /***
