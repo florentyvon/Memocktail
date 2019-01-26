@@ -29,7 +29,7 @@ public class BackgroundSoundService extends Service {
             String _soundS;
             _soundS = extras.getString("sound");
             System.out.println("mediaplayer : "+mMediaPlayer);
-            if(mMediaPlayer == null){
+            if(mMediaPlayer == null || (mMediaPlayer != null && !mMediaPlayer.isPlaying())){
                 mMediaPlayer = MediaPlayer.create(this, getSound(_soundS));
                 mMediaPlayer.setLooping(true);
                 mMediaPlayer.start();
@@ -41,7 +41,9 @@ public class BackgroundSoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mMediaPlayer != null) mMediaPlayer.release();
+        if (mMediaPlayer != null){
+            mMediaPlayer.release();
+        }
     }
 
     private int getSound(String soundString){
