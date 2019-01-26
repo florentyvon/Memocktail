@@ -41,7 +41,7 @@ public class BackgroundSoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mMediaPlayer != null) mMediaPlayer.stop();
+        if (mMediaPlayer != null) mMediaPlayer.release();
     }
 
     private int getSound(String soundString){

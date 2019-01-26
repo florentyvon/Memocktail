@@ -37,6 +37,6 @@ public class SoundEffectsService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMediaPlayer.stop();
+        if (mMediaPlayer != null) mMediaPlayer.release();
     }
 }
