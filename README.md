@@ -12,7 +12,7 @@ Project of an Android Memory Game about virgin vocktails ingredients.
 [Mickaël MENEUX](https://github.com/MickaMx), [Julien RAILLARD](https://github.com/jraillard), [Florent YVON](https://github.com/florentyvon)
 
 ## Bugs
-Sound bugs are known and due to non-thread treatment of mediaplayers. Not enough time to implements the best and workable solution. Feel free to correct and make a PR.
+Sound bugs are known and due to non-thread treatment of mediaplayers. Not enough time to implement the best and workable solution. Feel free to correct and make a PR.
 
 ## Evolutions
 A third game mode based on number of card movement could be implemented. 
