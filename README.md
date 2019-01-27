@@ -1,12 +1,12 @@
-# TPAndroidMemory
+# Memocktail
 Project of an Android Memory Game about virgin vocktails ingredients.
 
 ## Functions
-2 game modes available : Classic & Against the clock
-2 difficulties implemented : 6-pair difficulty (easy) and 8-pair difficulty (hard).
-3 choices of cocktail to make the game vary. 
-High-scores and historic available.
-Sound preferences customizable.
+- 2 game modes available : Classic & Against the clock  
+- 2 difficulties implemented : 6-pair difficulty (easy) and 8-pair difficulty (hard).  
+- 3 choices of cocktail to make the game vary.  
+- High-scores and historic available.  
+- Sound preferences customizable.  
 
 ## Developpers
 [Mickaël MENEUX](https://github.com/MickaMx), [Julien RAILLARD](https://github.com/jraillard), [Florent YVON](https://github.com/florentyvon)
