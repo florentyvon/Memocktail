@@ -90,16 +90,15 @@ public class SharedPreferencesManager {
     {
         // token pattern : victory/played-cocktail-gamemode-difficulty
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(cocktail.toLowerCase().replace(" ", "_")+"-");
-        stringBuilder.append(gameMode.toLowerCase().replace(" ", "_")+"-");
-        stringBuilder.append(difficulty.toLowerCase().replace(" ", "_"));
+        stringBuilder.append(cocktail.toLowerCase().replace(" ", "_")).append('-');
+        stringBuilder.append(gameMode.toLowerCase().replace(" ", "_")).append('-');
+        stringBuilder.append(difficulty.toLowerCase().replace(" ", "_")).append('-');
 
         return stringBuilder.insert(0, tokenType+"-").toString();
     }
 
     public boolean readSettingTokenValue(String settingToken){
         boolean tokenValue;
-        SharedPreferences.Editor editor = _prefs.edit();
 
         switch(settingToken){
             case "volume-background":

@@ -96,12 +96,12 @@ public class CocktailScoreFragment extends Fragment implements AdapterView.OnIte
         String[] difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};
         String[] modes = new String[] {getString(R.string.classic), getString(R.string.atc)};
 
-        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<String>(this.getActivity().getApplicationContext(),
+        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<>(this.getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item, difficulties);
         adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerDifficulty.setAdapter(adapterDifficulty);
 
-        ArrayAdapter<String> adapterGameMode = new ArrayAdapter<String>(this.getActivity().getApplicationContext(),
+        ArrayAdapter<String> adapterGameMode = new ArrayAdapter<>(this.getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item, modes);
         adapterGameMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerGameMode.setAdapter(adapterGameMode);

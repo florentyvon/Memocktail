@@ -9,7 +9,7 @@
         android:title="VolumeON"
         android:orderInCategory="300"
         android:icon="@drawable/ic_volume"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/volumeOFF"
@@ -17,13 +17,12 @@
         android:orderInCategory="300"
         android:icon="@drawable/ic_volume_off"
         app:showAsAction="ifRoom"
-        android:visible="false"></item>
+        android:visible="false"/>
 
     <item
         android:id="@+id/aPropos"
         android:title="À propos"
         android:orderInCategory="300"
-        app:showAsAction="never
-"></item>
+        app:showAsAction="never"/>
 
 </menu>

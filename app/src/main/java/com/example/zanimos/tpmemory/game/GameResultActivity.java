@@ -1,10 +1,8 @@
 package com.example.zanimos.tpmemory.game;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -12,7 +10,6 @@ import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
-import com.example.zanimos.tpmemory.services.SoundEffectsService;
 
 /***
  * Game result activity
@@ -43,7 +40,7 @@ public class GameResultActivity extends BaseActivity {
 
         // Set image depending victory
         Bundle bd = getIntent().getExtras();
-        setImage(bd);
+        if (bd!=null) setImage(bd);
 
         // Bind event
         _backToMenuButton.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +77,6 @@ public class GameResultActivity extends BaseActivity {
         }
         if(_soundIsOn[0])
             startService(intent);
-        else
-            intent = null;
     }
 
     /***

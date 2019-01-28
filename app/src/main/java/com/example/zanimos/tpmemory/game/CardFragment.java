@@ -19,7 +19,6 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     private ImageView _image;
     private int _imageId;
     private boolean _isFound;
-    public static final int rotationY = 45;
 
     public CardFragment() {}
 

@@ -3,7 +3,6 @@ package com.example.zanimos.tpmemory.historic;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
@@ -16,7 +15,6 @@ public class HistoricActivity extends BaseActivity {
 
     private ViewPager viewPager = null;
     private TabLayout tabLayout = null;
-    private MyFragmentPagerAdapter adapter = null;
 
     /***
      * onCreate activity event
@@ -36,7 +34,7 @@ public class HistoricActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        adapter = new MyFragmentPagerAdapter(this, getSupportFragmentManager());
+        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(this, getSupportFragmentManager());
         viewPager.setOffscreenPageLimit(adapter.getCount() -1);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

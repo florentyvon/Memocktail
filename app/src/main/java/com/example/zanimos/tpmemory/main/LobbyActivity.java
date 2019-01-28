@@ -1,28 +1,15 @@
 package com.example.zanimos.tpmemory.main;
 
-import android.app.AlertDialog;
-import android.app.Service;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.example.zanimos.tpmemory.AProposActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
-import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
 import com.example.zanimos.tpmemory.menu.MenuActivity;
-import com.example.zanimos.tpmemory.services.SoundEffectsService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 
 /***
  * Lobby activity (main activity)

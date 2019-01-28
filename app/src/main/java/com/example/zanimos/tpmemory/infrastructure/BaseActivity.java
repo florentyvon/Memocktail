@@ -11,10 +11,6 @@ import android.view.MenuItem;
 import com.example.zanimos.tpmemory.AProposActivity;
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
-import com.example.zanimos.tpmemory.services.SoundEffectsService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class BaseActivity extends AppCompatActivity {
 

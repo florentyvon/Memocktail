@@ -6,19 +6,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zanimos.tpmemory.R;
 import com.example.zanimos.tpmemory.infrastructure.BaseActivity;
-import com.example.zanimos.tpmemory.infrastructure.SharedPreferencesManager;
-import com.example.zanimos.tpmemory.menu.MenuActivity;
 import com.example.zanimos.tpmemory.services.BackgroundSoundService;
 import com.example.zanimos.tpmemory.services.SoundEffectsService;
 
@@ -31,7 +25,6 @@ import java.util.Collections;
  */
 public class GameActivity extends BaseActivity {
 
-    private SharedPreferencesManager _preferencesManager;
     private CardFragment[] _cardsSelected;
     private GridLayout _cardsGrid;
     private TextView _chronoTextView;
@@ -171,9 +164,6 @@ public class GameActivity extends BaseActivity {
         if(super._soundIsOn[0]){
             // Start playing sound
             startService(i);
-        } else{
-             // reinitiate intent
-            i = null;
         }
     }
 

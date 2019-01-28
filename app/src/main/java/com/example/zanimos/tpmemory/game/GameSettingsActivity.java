@@ -1,7 +1,6 @@
 package com.example.zanimos.tpmemory.game;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -118,17 +117,17 @@ public class GameSettingsActivity extends BaseActivity {
         String[] difficulties = new String[] {getString(R.string.easy), getString(R.string.hard)};
         String[] modes = new String[] {getString(R.string.classic), getString(R.string.atc)};
 
-        ArrayAdapter<String> adapterCocktails = new ArrayAdapter<String>(getApplicationContext(),
+        ArrayAdapter<String> adapterCocktails = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, cocktails);
         adapterCocktails.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerCocktails.setAdapter(adapterCocktails);
 
-        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<String>(getApplicationContext(),
+        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, difficulties);
         adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerDifficulty.setAdapter(adapterDifficulty);
 
-        ArrayAdapter<String> adapterGameMode = new ArrayAdapter<String>(getApplicationContext(),
+        ArrayAdapter<String> adapterGameMode = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, modes);
         adapterGameMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _spinnerGameMode.setAdapter(adapterGameMode);

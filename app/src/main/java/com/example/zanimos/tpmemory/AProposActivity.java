@@ -2,7 +2,6 @@ package com.example.zanimos.tpmemory;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 /***
  * A propos activity
