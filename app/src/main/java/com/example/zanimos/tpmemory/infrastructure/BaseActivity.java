@@ -19,7 +19,6 @@ import java.util.Arrays;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private Menu _menu;
-    //private ArrayList<Integer> mSelectedItems;
     /*
      _soundIsOn[0] => background sound
      _soundIsOn[0] => sound effect
@@ -28,7 +27,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected SharedPreferencesManager preferencesManager;
     protected String _song = "lobby";
 
-
+    /***
+     * onCreate activity event
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,14 +103,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /***
+     * onDestroy activity event
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
         stopService(new Intent(this, BackgroundSoundService.class));
     }
 
+    /**
+     * Set volumes preferences
+     */
     private void setVolumes() {
-        // Set background sound
+        // Set background sound settings
         if (_soundIsOn[0]) {
             preferencesManager.writeSettingTokenValue("volume-background", true);
             Intent intent = new Intent(this, BackgroundSoundService.class);
@@ -119,7 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             stopService(new Intent(this, BackgroundSoundService.class));
         }
 
-        // Set sound effects
+        // Set sound effects settings
         if (_soundIsOn[1]) {
             preferencesManager.writeSettingTokenValue("volume-sound_effects", true);
         } else {

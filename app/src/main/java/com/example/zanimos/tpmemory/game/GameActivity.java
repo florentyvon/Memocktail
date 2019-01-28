@@ -42,7 +42,6 @@ public class GameActivity extends BaseActivity {
     private int _timer;
     private boolean _found;
     private boolean _gameFinished;
-    private Intent i;
 
     /***
      * onCreate activity event
@@ -151,7 +150,7 @@ public class GameActivity extends BaseActivity {
     private void setGameMode(String gameMode)
     {
         // Initiate background sound service
-        i = new Intent(this, BackgroundSoundService.class);
+        Intent i = new Intent(this, BackgroundSoundService.class);
 
         if(getString(R.string.atc).equals(gameMode)){
             super._song = "countdown";
@@ -173,7 +172,7 @@ public class GameActivity extends BaseActivity {
             // Start playing sound
             startService(i);
         } else{
-            //
+             // reinitiate intent
             i = null;
         }
     }

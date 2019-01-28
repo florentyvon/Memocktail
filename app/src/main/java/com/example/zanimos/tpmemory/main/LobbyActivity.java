@@ -50,6 +50,9 @@ public class LobbyActivity extends BaseActivity {
         initComponents();
     }
 
+    /***
+     * onResume activity event
+     */
     @Override
     protected void onResume(){
         overridePendingTransition(R.anim.slide_forward,R.anim.slide_back);

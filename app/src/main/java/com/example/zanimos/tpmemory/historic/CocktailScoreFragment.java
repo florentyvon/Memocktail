@@ -179,11 +179,9 @@ public class CocktailScoreFragment extends Fragment implements AdapterView.OnIte
     }
 
     /***
-     * onNothingSelected spinner event
+     * onNothingSelected spinner event (not used)
      * @param parent
      */
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) { }
 }

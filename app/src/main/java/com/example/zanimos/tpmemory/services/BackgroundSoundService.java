@@ -11,16 +11,26 @@ import android.support.annotation.Nullable;
 
 import com.example.zanimos.tpmemory.R;
 
+/***
+ * Background sound service
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class BackgroundSoundService extends Service {
 
     private MediaPlayer mMediaPlayer;
 
+    /***
+     * onBind activity event
+     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+    /***
+     * onStartCommand activity event
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Bundle extras = intent.getExtras();
@@ -38,6 +48,9 @@ public class BackgroundSoundService extends Service {
         return START_STICKY;
     }
 
+    /***
+     * onDestroy activity event
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -46,6 +59,11 @@ public class BackgroundSoundService extends Service {
         }
     }
 
+    /***
+     * Getter method for background sound resource
+     * @param soundString : background sound
+     * @return int : Background sound resource code
+     */
     private int getSound(String soundString){
         switch(soundString){
             case "lobby":

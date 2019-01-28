@@ -8,17 +8,30 @@ import android.os.IBinder;
 
 import com.example.zanimos.tpmemory.R;
 
+/***
+ * Sound effects service
+ * @author Florent Yvon, Julien Raillard, Mickael Meneux
+ */
 public class SoundEffectsService extends Service {
 
     private MediaPlayer mMediaPlayer;
 
+    /***
+     * Constructor
+     */
     public SoundEffectsService() {}
 
+    /***
+     * onBind activity event
+     */
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+    /***
+     * onStartCommand activity event
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -34,6 +47,9 @@ public class SoundEffectsService extends Service {
         return START_STICKY;
     }
 
+    /***
+     * onDestroy activity event
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
