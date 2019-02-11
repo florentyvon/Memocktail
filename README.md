@@ -17,6 +17,7 @@ Sound bugs are known and due to non-thread treatment of mediaplayers. Not enough
 ## Evolutions
 A third game mode based on number of card movement could be implemented. 
 Intermediate difficulty could be set and easy difficulty made easier.
+Make the app responsive for smartphones or larger devices.
 
 ## Demo
 ![Home](/demo/home.png)
