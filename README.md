@@ -1,5 +1,5 @@
 # Memocktail
-Project of an Android Memory Game about virgin vocktails ingredients.
+Project of an Android Memory Game about virgin cocktails ingredients.
 
 ## Functions
 - 2 game modes available : Classic & Against the clock  
